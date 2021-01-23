@@ -10,7 +10,7 @@ import javafx.stage.WindowEvent;
 public class Main extends Application {
 	
 	FXMLLoader fxmlLoader;
-	//komentare
+	
 	public Main() {
 		System.out.println("Main:constructor()");
 	}
