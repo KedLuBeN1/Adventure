@@ -1,18 +1,24 @@
 package lab;
 
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
-import javafx.scene.image.Image;
+import java.util.HashMap;
+
+import jakarta.json.Json;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
+
 
 public class RoomManager {
 
 	private static RoomManager instance;
 	private Room currentRoom;
-	private ArrayList<Room> rooms = new ArrayList<Room>();
+	private HashMap<String, Room> rooms = new HashMap<String, Room>();
 
-	private RoomManager(){
-			System.out.println("RoomManager:constructor()");
-		}
+	private RoomManager() {
+		System.out.println("RoomManager:constructor()");
+	}
 
 	public static synchronized RoomManager getInstance() {
 		if (instance == null) {
@@ -20,60 +26,166 @@ public class RoomManager {
 		}
 		return instance;
 	}
-	
+
 	public void initRooms() {
-		rooms.add(new Room("forest", "Beautifull forest", new Image(getClass().getResource("/lab/forest.jpg").toString()), true));
-		rooms.add(new Room("well", "Very deep well", new Image(getClass().getResource("/lab/well.jpg").toString()), true));
-		rooms.add(new Room("cratch", "Big cratch", new Image(getClass().getResource("/lab/cratch.jpg").toString()), true));
-		rooms.add(new Room("cave", "Beautifull cave", new Image(getClass().getResource("/lab/cave.jpeg").toString()), true));
-		rooms.add(new Room("doors to void", "Some weird doors", new Image(getClass().getResource("/lab/doorsToVoid.jpg").toString()), true));
-		rooms.add(new Room("void", "Just void", new Image(getClass().getResource("/lab/void.jpg").toString()), false));
+		/*JsonParser jsonParser = null;
+		try {
+			jsonParser = Json.createParser(new FileInputStream(getClass().getResource("/lab/rooms.json").getFile()));
+		} catch (FileNotFoundException e) {
+			System.out.println("CHYBA: Nenacetl jsem soubor s daty");
+			e.printStackTrace();
+			return;
+		}
+		Room r = null;
+		while (jsonParser.hasNext()) {
+			Event event = jsonParser.next();
+			switch (event) {
+			case KEY_NAME:
+				if (jsonParser.getString().equals("name")) {
+					jsonParser.next();
+					r.setName(jsonParser.getString());
+				} else if (jsonParser.getString().equals("description")) {
+					jsonParser.next();
+					r.setDescription(jsonParser.getString());
+				} else if (jsonParser.getString().equals("imageName")) {
+					jsonParser.next();
+					r.setImageName(jsonParser.getString());
+				} else if (jsonParser.getString().equals("accessible")) {
+					jsonParser.next();
+					r.setAccessible(Boolean.parseBoolean(jsonParser.getString()));
+				}
+				break;
+			case VALUE_STRING:
+
+			case VALUE_NUMBER:
+				//
+				break;
+			case START_ARRAY:
+				System.out.println("Zacatek pole");
+				break;
+			case END_ARRAY:
+				System.out.println("Konec pole");
+				break;
+			case START_OBJECT:
+				System.out.println(" Novy objekt");
+				r = new Room();
+				break;
+			case END_OBJECT:
+				System.out.println(" Konci objekt pridam do listu ");
+				rooms.put(r.getName(),r);
+				break;
+			default:
+				System.out.println("Neco se pokazilo pri nacitani");
+			}
+		}
+		jsonParser.close();*/
 		
-		 
-		rooms.get(0).setNorthExit(rooms.get(1));
-		rooms.get(0).setSouthExit(rooms.get(2));
-		rooms.get(0).setEastExit(rooms.get(3));
-		rooms.get(0).setWestExit(rooms.get(4));
+		rooms.put("forest", new Room("forest", "Beautifull forest", "forest.jpg", true));
+		rooms.put("well", new Room("well", "Very deep well", "well.jpg", true));
+		rooms.put("cratch", new Room("cratch", "Big cratch", "cratch.jpg", true));
+		rooms.put("cave", new Room("cave", "Beautifull cave", "cave.jpeg", true));
+		rooms.put("doors to void", new Room("doors to void", "Some weird doors", "doorsToVoid.jpg", true));
+		rooms.put("void",new Room("void", "Just void", "void.jpg", false));
 		
-		rooms.get(1).setSouthExit(rooms.get(0));
+		/*jsonParser = null;
+		try {
+			jsonParser = Json.createParser(new FileInputStream(getClass().getResource("/lab/roomExits.json").getFile()));
+		} catch (FileNotFoundException e) {
+			System.out.println("CHYBA: Nenacetl jsem soubor s daty");
+			e.printStackTrace();
+			return;
+		}
+		r = null;
+		while (jsonParser.hasNext()) {
+			Event event = jsonParser.next();
+			switch (event) {
+			case KEY_NAME:
+				if (jsonParser.getString().equals("name")) {
+					jsonParser.next();
+					r = rooms.get(jsonParser.getString());
+				} else if (jsonParser.getString().equals("northExit")) {
+					jsonParser.next();
+					if(jsonParser.getString()!=null)
+						r.setNorthExit(rooms.get(jsonParser.getString()));
+				} else if (jsonParser.getString().equals("southExit")) {
+					jsonParser.next();
+					if(jsonParser.getString()!=null)
+						r.setSouthExit(rooms.get(jsonParser.getString()));
+				} else if (jsonParser.getString().equals("westExit")) {
+					jsonParser.next();
+					if(jsonParser.getString()!=null)
+						r.setWestExit(rooms.get(jsonParser.getString()));
+				} else if (jsonParser.getString().equals("eastExit")) {
+					jsonParser.next();
+					if(jsonParser.getString()!=null)
+						r.setEastExit(rooms.get(jsonParser.getString()));
+				}
+				break;
+			case VALUE_STRING:	
+			case VALUE_NUMBER:
+				//
+				break;
+			case START_ARRAY:
+				System.out.println("Zacatek pole");
+				break;
+			case END_ARRAY:
+				System.out.println("Konec pole");
+				break;
+			case START_OBJECT:
+				System.out.println(" Novy objekt");
+				break;
+			case END_OBJECT:
+				System.out.println(" Konci objekt pridam do listu ");
+				break;
+			default:
+				System.out.println("Neco se pokazilo pri nacitani");
+			}
+		}
+		jsonParser.close();*/
+		rooms.get("forest").setNorthExit(rooms.get("well"));
+		rooms.get("forest").setSouthExit(rooms.get("cratch"));
+		rooms.get("forest").setEastExit(rooms.get("cave"));
+		rooms.get("forest").setWestExit(rooms.get("doors to void"));
+
+		rooms.get("well").setSouthExit(rooms.get("forest"));
+
+		rooms.get("cratch").setNorthExit(rooms.get("forest"));
+
+		rooms.get("cave").setWestExit(rooms.get("forest"));
+
+		rooms.get("doors to void").setEastExit(rooms.get("forest"));
+		rooms.get("doors to void").setWestExit(rooms.get("void"));
 		
-		rooms.get(2).setNorthExit(rooms.get(0));
-		
-		rooms.get(3).setWestExit(rooms.get(0));
-		
-		rooms.get(4).setEastExit(rooms.get(0));
-		rooms.get(4).setWestExit(rooms.get(5));
-		
-		rooms.get(1).addItem(ItemManager.getInstance().getItem(0));
-		
-		rooms.get(2).addItem(ItemManager.getInstance().getItem(1));
-		
-		rooms.get(3).addItem(ItemManager.getInstance().getItem(2));
-		
-		setCurrentRoom(rooms.get(0));
+		rooms.get("void").setEastExit(rooms.get("doors to void"));
+
+		rooms.get("well").addItem(ItemManager.getInstance().getItem("sword"));
+
+		rooms.get("cratch").addItem(ItemManager.getInstance().getItem("apple"));
+
+		rooms.get("cave").addItem(ItemManager.getInstance().getItem("key to void"));
+
+		setCurrentRoom(rooms.get("forest"));
 	}
 
 	public Room getCurrentRoom() {
 		return currentRoom;
 	}
-	
-	public void setRooms(ArrayList<Room> rooms) {
+
+	public void setRooms(HashMap<String, Room> rooms) {
 		this.rooms = rooms;
 	}
 
-	public ArrayList<Room> getRooms() {
+	public HashMap<String, Room> getRooms() {
 		return rooms;
 	}
-	
-	public Room getRoom(int i) {
-		return rooms.get(i);
+
+	public Room getRoom(String room) {
+		return rooms.get(room);
 	}
 
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;
 		currentRoom.showRoom();
 	}
-
-
 
 }

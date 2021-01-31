@@ -1,0 +1,28 @@
+[
+{
+    "name": "sword",
+    "imageName": "sword.png",
+    "x": "450",
+    "y": "500",
+    "width": "50",
+    "height": "50"
+},
+
+{
+    "name": "apple",
+    "imageName": "apple.png",
+    "x": "50",
+    "y": "500",
+    "width": "32",
+    "height": "32"
+},
+
+{
+    "name": "key to void",
+    "imageName": "keyToVoid.jpg",
+    "x": "300",
+    "y": "500",
+    "width": "80",
+    "height": "45"
+}
+]

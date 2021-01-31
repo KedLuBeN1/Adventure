@@ -1,0 +1,43 @@
+[
+{
+    "name": "forest",
+    "description": "Beautifull forest",
+    "imageName": "forest.jpg",
+    "accessible": "true"
+},
+
+{
+    "name": "well",
+    "description": "Very deep well",
+    "imageName": "well.jpg",
+    "accessible": "true"
+},
+
+{
+    "name": "cratch",
+    "description": "Big cratch",
+    "imageName": "cratch.jpg",
+    "accessible": "true"
+},
+
+{
+    "name": "cave",
+    "description": "Beautifull cave",
+    "imageName": "cave.jpeg",
+    "accessible": "true"
+},
+
+{
+    "name": "doors to void",
+    "description": "Some weird doors",
+    "imageName": "doorsToVoid.jpg",
+    "accessible": "true"
+},
+
+{
+    "name": "void",
+    "description": "Just void",
+    "imageName": "void.jpg",
+    "accessible": "false"
+}
+]

@@ -80,7 +80,7 @@ public class Command {
 		}
 		else if(name == "get rooms") {
 			String rooms = "All accessible rooms\n";
-			for(Room room : RoomManager.getInstance().getRooms()) {
+			for(Room room : RoomManager.getInstance().getRooms().values()) {
 				if(room.isAccessible()) {
 				rooms = rooms + room.getName()+ "..."+room.getDescription()+ "\n";
 				}

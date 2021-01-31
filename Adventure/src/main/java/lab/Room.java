@@ -1,15 +1,12 @@
 package lab;
 
-
 import java.util.ArrayList;
-
-import javafx.scene.image.Image;
 
 public class Room implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String name;
-	private Image image;
+	private String imageName;
 	private Room northExit = null;
 	private Room southExit = null;
 	private Room westExit = null;
@@ -17,12 +14,15 @@ public class Room implements java.io.Serializable{
 	private boolean accessible;
 	private String description = "";
 	private ArrayList<Item> items = new ArrayList<Item>();
-
-	public Room(String name, String description, Image image, boolean accessible) {
+	
+	public Room(String name, String description, String imageName, boolean accessible) {
 		this.name = name;
-		this.image = image;
+		this.imageName = imageName;
 		this.accessible = accessible;
 		this.description = description;
+	}
+	
+	public Room() {
 	}
 
 	public String getName() {
@@ -40,9 +40,11 @@ public class Room implements java.io.Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	public void setImageName(String imageName) {
+		this.imageName=imageName;
+	}
 	public void showRoom() {
-		World.getInstance().getController().showImage(image);
+		World.getInstance().getController().showRoom(imageName);
 		for(Item item: items) {
 			item.showItem();
 		}

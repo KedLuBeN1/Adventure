@@ -1,23 +1,24 @@
 package lab;
 
-import javafx.scene.image.Image;
+public class Item implements java.io.Serializable{
 
-public class Item {
-
+	private static final long serialVersionUID = 1L;
 	private String name;
-	private Image image;
+	private String imageName;
 	private int x;
 	private int y;
 	private int width;
 	private int height;
 
-	public Item(String name, Image image, int x, int y, int width, int height) {
+	public Item(String name, String imageName, int x, int y, int width, int height) {
 		this.name = name;
-		this.image = image;
+		this.imageName = imageName;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+	}
+	public Item() {
 	}
 
 	public boolean clickedOnItem(double posX, double posY) {
@@ -30,14 +31,59 @@ public class Item {
 	}
 
 	public void showItem() {
-		World.getInstance().getController().showItem(image, x, y, width, height);
+		World.getInstance().getController().showItem(imageName, x, y, width, height);
 	}
 
 	public String getName() {
 		return name;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 
 	public boolean itemAction() {
+		System.out.println("itemAction");
 		if (name == "sword") {
 			System.out.println("Nothing for now");	
 			return true;
@@ -51,7 +97,9 @@ public class Item {
 		}
 		else if (name == "key to void") {
 			if(RoomManager.getInstance().getCurrentRoom().getName() == "doors to void") {
-				RoomManager.getInstance().getRoom(5).setAccessible(true);
+				RoomManager.getInstance().getRoom("void").setAccessible(true);
+				RoomManager.getInstance().getCurrentRoom().setImageName("doorsToVoidOpened.jpg");
+				RoomManager.getInstance().getCurrentRoom().showRoom();
 				World.getInstance().getController().displayText("Path to void has been unlocked");
 				return true;
 			}
@@ -63,5 +111,4 @@ public class Item {
 		}
 		return false;
 	}
-
 }

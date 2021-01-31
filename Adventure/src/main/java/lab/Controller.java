@@ -8,12 +8,10 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -59,6 +57,18 @@ public class Controller {
 
 	@FXML
 	private Text current_HP;
+	
+	@FXML
+    private Button westButton;
+
+    @FXML
+    private Button eastButton;
+
+    @FXML
+    private Button northButton;
+
+    @FXML
+    private Button southButton;
 
 	@FXML
 	void enterButtonAction(ActionEvent event) {
@@ -77,6 +87,26 @@ public class Controller {
 		System.exit(0);
 	}
 
+    @FXML
+    void goEastAction(ActionEvent event) {
+    	checkCommand("go east");
+    }
+
+    @FXML
+    void goNorthAction(ActionEvent event) {
+    	checkCommand("go north");
+    }
+
+    @FXML
+    void goSouthAction(ActionEvent event) {
+    	checkCommand("go south");
+    }
+
+    @FXML
+    void goWestAction(ActionEvent event) {
+    	checkCommand("go west");
+    }
+
 	@FXML
 	void loadGameAction(ActionEvent event) {
 		try {
@@ -86,10 +116,9 @@ public class Controller {
 			World.getInstance().getPlayer().setHP(data.getCurrentHP());
 			World.getInstance().getPlayer().setMaxHP(data.getMaxHP());
 			World.getInstance().getPlayer().setName(data.getPlayerName());
-			// RoomManager.getInstance().setCurrentRoom(data.getCurrentRoom()); 	
-			// World.getInstance().getPlayer().setInventory(data.getInventory());
-			// RoomManager.getInstance().setRooms(data.getRooms());
-
+			RoomManager.getInstance().setCurrentRoom(data.getCurrentRoom()); 
+			RoomManager.getInstance().setRooms(data.getRooms());
+			World.getInstance().getPlayer().setInventory(data.getInventory());
 			System.out.println("Game has been loaded");
 			displayText("Game has been loaded");
 		} catch (Exception e) {
@@ -105,9 +134,9 @@ public class Controller {
 		data.setCurrentHP(World.getInstance().getPlayer().getHP());
 		data.setMaxHP(World.getInstance().getPlayer().getMaxHP());
 		data.setPlayerName(World.getInstance().getPlayer().getName());
-		// data.setCurrentRoom(RoomManager.getInstance().getCurrentRoom());
-		// data.setInventory(World.getInstance().getPlayer().getInventory());
-		// data.setRooms(RoomManager.getInstance().getRooms());
+		data.setCurrentRoom(RoomManager.getInstance().getCurrentRoom());
+		data.setInventory(World.getInstance().getPlayer().getInventory());
+		data.setRooms(RoomManager.getInstance().getRooms());
 		try {
 			SaveLoadManager.getInstance().save(data, "first.save");
 			System.out.println("Game has been saved");
@@ -120,7 +149,6 @@ public class Controller {
 	@FXML
 	public void initialize() {
 		System.out.println("initialize ");
-		System.out.println(javafx.scene.text.Font.getFamilies());
 		initConroller();
 		initPlayer();
 		initCommands();
@@ -190,6 +218,7 @@ public class Controller {
 				}
 			}
 		});
+		
 	}
 
 	private void initCommands() {
@@ -222,10 +251,52 @@ public class Controller {
 		System.out.println("Controller:constructor()");
 	}
 
-	public void showImage(Image image) {
-		canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
+	public void showRoom(String imageName) {
+		if(ImageManager.getInstance().getImage(imageName) == null) {
+			System.out.println("Tenhle obrazek jeste neznam, vytvorim ho");
+			ImageManager.getInstance().addImage(imageName);
+			Image image = ImageManager.getInstance().getImage(imageName);
+			canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
+		}
+		else {
+			System.out.println("Tenhle obrazek uz znam");
+			Image image = ImageManager.getInstance().getImage(imageName);
+			canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
+		}
+		showArrows();
 	}
-
+	public void showArrows() {
+		Room currentRoom = RoomManager.getInstance().getCurrentRoom();
+		
+		if(currentRoom.getNorthExit() != null && currentRoom.getNorthExit().isAccessible()) {
+			northButton.setVisible(true);
+		}
+		else {
+			northButton.setVisible(false);
+		}
+		
+		if(currentRoom.getSouthExit() != null && currentRoom.getSouthExit().isAccessible()) {
+			southButton.setVisible(true);
+		}
+		else {
+			southButton.setVisible(false);
+		}
+		
+		if(currentRoom.getEastExit() != null && currentRoom.getEastExit().isAccessible()) {
+			eastButton.setVisible(true);
+		}
+		else {
+			eastButton.setVisible(false);
+		}
+		
+		if(currentRoom.getWestExit() != null && currentRoom.getWestExit().isAccessible()) {
+			westButton.setVisible(true);
+		}
+		else {
+			westButton.setVisible(false);
+		}
+	}
+	
 	public void setCurrent_HP(int current_HP2) {
 		current_HP.setText(Integer.toString(current_HP2));
 	}
@@ -259,8 +330,18 @@ public class Controller {
 		}
 	}
 	
-	public void showItem(Image image, int x, int y, int w, int h) {
-		canvas.getGraphicsContext2D().drawImage(image, x, y, w, h);
+	public void showItem(String imageName, int x, int y, int w, int h) {		
+		if(ImageManager.getInstance().getImage(imageName) == null) {
+			System.out.println("Tenhle obrazek itemu jeste neznam, vytvorim ho");
+			ImageManager.getInstance().addImage(imageName);
+			Image image = ImageManager.getInstance().getImage(imageName);
+			canvas.getGraphicsContext2D().drawImage(image, x, y, w, h);
+		}
+		else {
+			System.out.println("Tenhle obrazek itemu uz znam");
+			Image image = ImageManager.getInstance().getImage(imageName);
+			canvas.getGraphicsContext2D().drawImage(image, x, y, w, h);
+		}
 	}
 
 	public void displayText(String s) {

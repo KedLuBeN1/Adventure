@@ -15,7 +15,6 @@ public class Main extends Application {
 		System.out.println("Main:constructor()");
 	}
 
-	//nejaka zmena 2
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -7,21 +7,15 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="680.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lab.Controller">
-   <center>
-      <Canvas fx:id="canvas" height="600.0" width="800.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <effect>
-            <DropShadow />
-         </effect></Canvas>
-   </center>
    <left>
       <VBox fx:id="inventory" prefHeight="600.0" prefWidth="192.0" BorderPane.alignment="CENTER">
          <children>
@@ -100,4 +94,51 @@
          </children>
       </HBox>
    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Canvas fx:id="canvas" height="600.0" width="800.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Canvas>
+            <Button fx:id="westButton" layoutX="14.0" layoutY="274.0" mnemonicParsing="false" onAction="#goWestAction" prefHeight="53.0" prefWidth="0.0" rotate="180.0">
+               <graphic>
+                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="eastButton" layoutX="722.0" layoutY="274.0" mnemonicParsing="false" onAction="#goEastAction" prefHeight="53.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="northButton" layoutX="368.0" layoutY="14.0" mnemonicParsing="false" onAction="#goNorthAction" prefHeight="53.0" prefWidth="0.0" rotate="-90.0">
+               <graphic>
+                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="southButton" layoutX="368.0" layoutY="533.0" mnemonicParsing="false" onAction="#goSouthAction" prefHeight="53.0" prefWidth="0.0" rotate="90.0">
+               <graphic>
+                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

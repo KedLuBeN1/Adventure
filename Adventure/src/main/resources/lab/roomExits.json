@@ -1,0 +1,49 @@
+[
+{
+    "name": "forest",
+    "northExit": "well",
+    "southExit": "cratch",
+    "westExit": "doors to void",
+    "eastExit": "cave"
+},
+
+{
+    "name": "well",
+    "northExit": "null",
+    "southExit": "forest",
+    "westExit": "null",
+    "eastExit": "null"
+},
+
+{
+    "name": "cratch",
+    "northExit": "forest",
+    "southExit": "null",
+    "westExit": "null",
+    "eastExit": "null"
+},
+
+{
+    "name": "cave",
+    "northExit": "null",
+    "southExit": "null",
+    "westExit": "forest",
+    "eastExit": "null"
+},
+
+{
+    "name": "doors to void",
+    "northExit": "null",
+    "southExit": "null",
+    "westExit": "void",
+    "eastExit": "forest"
+},
+
+{
+    "name": "void",
+    "northExit": "null",
+    "southExit": "null",
+    "westExit": "null",
+    "eastExit": "doors to void"
+}
+]

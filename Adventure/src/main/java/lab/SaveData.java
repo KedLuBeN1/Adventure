@@ -1,6 +1,7 @@
 package lab;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SaveData implements java.io.Serializable {
 
@@ -11,7 +12,7 @@ public class SaveData implements java.io.Serializable {
 	private int maxHP;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 	private Room currentRoom;
-	private ArrayList<Room> rooms = new ArrayList<Room>();
+	private HashMap<String, Room> rooms = new HashMap<String, Room>();
 	
 
 	public void setPlayerName(String playerName) {
@@ -54,11 +55,11 @@ public class SaveData implements java.io.Serializable {
 		return currentRoom;
 	}
 
-	public ArrayList<Room> getRooms() {
+	public HashMap<String, Room> getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(ArrayList<Room> rooms) {
+	public void setRooms(HashMap<String, Room> rooms) {
 		this.rooms = rooms;
 	}
 
