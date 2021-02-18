@@ -1,29 +1,30 @@
 package lab;
 
-public class Item implements java.io.Serializable{
+public abstract class Item implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String name;
+	protected String name;
 	private String imageName;
+	private boolean collectable;
 	private int x;
 	private int y;
 	private int width;
 	private int height;
 
-	public Item(String name, String imageName, int x, int y, int width, int height) {
+	public Item(String name, String imageName, int x, int y, int width, int height, boolean collectable) {
 		this.name = name;
 		this.imageName = imageName;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.collectable = collectable;
 	}
 	public Item() {
 	}
 
 	public boolean clickedOnItem(double posX, double posY) {
 		if (posX >= x && posX <= (x + width) && posY >= y && posY <= (y + height)) {
-			World.getInstance().getController().displayText("You have picked up "+name);
 			return true;
 		} else {
 			return false;
@@ -41,7 +42,15 @@ public class Item implements java.io.Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	public boolean isCollectable() {
+		return collectable;
+	}
+	
+	public void setCollectable(boolean collectable) {
+		this.collectable = collectable;
+	}
+	
 	public String getImageName() {
 		return imageName;
 	}
@@ -81,34 +90,6 @@ public class Item implements java.io.Serializable{
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
-	public boolean itemAction() {
-		System.out.println("itemAction");
-		if (name == "sword") {
-			System.out.println("Nothing for now");	
-			return true;
-		}
-		else if (name == "apple") {
-			int hp1 = World.getInstance().getPlayer().getHP();
-			World.getInstance().getPlayer().addHP(25);
-			int hp2 = World.getInstance().getPlayer().getHP();
-			World.getInstance().getController().displayText("Apple healed you for " + (hp2-hp1) + " HP");
-			return true;
-		}
-		else if (name == "key to void") {
-			if(RoomManager.getInstance().getCurrentRoom().getName() == "doors to void") {
-				RoomManager.getInstance().getRoom("void").setAccessible(true);
-				RoomManager.getInstance().getCurrentRoom().setImageName("doorsToVoidOpened.jpg");
-				RoomManager.getInstance().getCurrentRoom().showRoom();
-				World.getInstance().getController().displayText("Path to void has been unlocked");
-				return true;
-			}
-			else {
-				World.getInstance().getController().displayText("This key should open some doors");
-				return false;
-			}
-				
-		}
-		return false;
-	}
+	
+	public abstract boolean itemAction();
 }

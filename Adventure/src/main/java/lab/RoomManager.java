@@ -1,9 +1,15 @@
 package lab;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
+import java.io.IOException;
 import java.util.HashMap;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.json.Json;
 import jakarta.json.stream.JsonParser;
@@ -27,144 +33,67 @@ public class RoomManager {
 		return instance;
 	}
 
-	public void initRooms() {
-		/*JsonParser jsonParser = null;
-		try {
-			jsonParser = Json.createParser(new FileInputStream(getClass().getResource("/lab/rooms.json").getFile()));
-		} catch (FileNotFoundException e) {
-			System.out.println("CHYBA: Nenacetl jsem soubor s daty");
-			e.printStackTrace();
-			return;
-		}
-		Room r = null;
-		while (jsonParser.hasNext()) {
-			Event event = jsonParser.next();
-			switch (event) {
-			case KEY_NAME:
-				if (jsonParser.getString().equals("name")) {
-					jsonParser.next();
-					r.setName(jsonParser.getString());
-				} else if (jsonParser.getString().equals("description")) {
-					jsonParser.next();
-					r.setDescription(jsonParser.getString());
-				} else if (jsonParser.getString().equals("imageName")) {
-					jsonParser.next();
-					r.setImageName(jsonParser.getString());
-				} else if (jsonParser.getString().equals("accessible")) {
-					jsonParser.next();
-					r.setAccessible(Boolean.parseBoolean(jsonParser.getString()));
-				}
-				break;
-			case VALUE_STRING:
-
-			case VALUE_NUMBER:
-				//
-				break;
-			case START_ARRAY:
-				System.out.println("Zacatek pole");
-				break;
-			case END_ARRAY:
-				System.out.println("Konec pole");
-				break;
-			case START_OBJECT:
-				System.out.println(" Novy objekt");
-				r = new Room();
-				break;
-			case END_OBJECT:
-				System.out.println(" Konci objekt pridam do listu ");
-				rooms.put(r.getName(),r);
-				break;
-			default:
-				System.out.println("Neco se pokazilo pri nacitani");
-			}
-		}
-		jsonParser.close();*/
-		
-		rooms.put("forest", new Room("forest", "Beautifull forest", "forest.jpg", true));
+	public void initRooms() {		
+		/*rooms.put("forest", new Room("forest", "Beautifull forest", "forest.jpg", true));
 		rooms.put("well", new Room("well", "Very deep well", "well.jpg", true));
 		rooms.put("cratch", new Room("cratch", "Big cratch", "cratch.jpg", true));
 		rooms.put("cave", new Room("cave", "Beautifull cave", "cave.jpeg", true));
 		rooms.put("doors to void", new Room("doors to void", "Some weird doors", "doorsToVoid.jpg", true));
 		rooms.put("void",new Room("void", "Just void", "void.jpg", false));
 		
-		/*jsonParser = null;
-		try {
-			jsonParser = Json.createParser(new FileInputStream(getClass().getResource("/lab/roomExits.json").getFile()));
-		} catch (FileNotFoundException e) {
-			System.out.println("CHYBA: Nenacetl jsem soubor s daty");
-			e.printStackTrace();
-			return;
-		}
-		r = null;
-		while (jsonParser.hasNext()) {
-			Event event = jsonParser.next();
-			switch (event) {
-			case KEY_NAME:
-				if (jsonParser.getString().equals("name")) {
-					jsonParser.next();
-					r = rooms.get(jsonParser.getString());
-				} else if (jsonParser.getString().equals("northExit")) {
-					jsonParser.next();
-					if(jsonParser.getString()!=null)
-						r.setNorthExit(rooms.get(jsonParser.getString()));
-				} else if (jsonParser.getString().equals("southExit")) {
-					jsonParser.next();
-					if(jsonParser.getString()!=null)
-						r.setSouthExit(rooms.get(jsonParser.getString()));
-				} else if (jsonParser.getString().equals("westExit")) {
-					jsonParser.next();
-					if(jsonParser.getString()!=null)
-						r.setWestExit(rooms.get(jsonParser.getString()));
-				} else if (jsonParser.getString().equals("eastExit")) {
-					jsonParser.next();
-					if(jsonParser.getString()!=null)
-						r.setEastExit(rooms.get(jsonParser.getString()));
-				}
-				break;
-			case VALUE_STRING:	
-			case VALUE_NUMBER:
-				//
-				break;
-			case START_ARRAY:
-				System.out.println("Zacatek pole");
-				break;
-			case END_ARRAY:
-				System.out.println("Konec pole");
-				break;
-			case START_OBJECT:
-				System.out.println(" Novy objekt");
-				break;
-			case END_OBJECT:
-				System.out.println(" Konci objekt pridam do listu ");
-				break;
-			default:
-				System.out.println("Neco se pokazilo pri nacitani");
-			}
-		}
-		jsonParser.close();*/
-		rooms.get("forest").setNorthExit(rooms.get("well"));
-		rooms.get("forest").setSouthExit(rooms.get("cratch"));
-		rooms.get("forest").setEastExit(rooms.get("cave"));
-		rooms.get("forest").setWestExit(rooms.get("doors to void"));
+		rooms.get("forest").setNorthExit("well");
+		rooms.get("forest").setSouthExit("cratch");
+		rooms.get("forest").setEastExit("cave");
+		rooms.get("forest").setWestExit("doors to void");
 
-		rooms.get("well").setSouthExit(rooms.get("forest"));
+		rooms.get("well").setSouthExit("forest");
 
-		rooms.get("cratch").setNorthExit(rooms.get("forest"));
+		rooms.get("cratch").setNorthExit("forest");
 
-		rooms.get("cave").setWestExit(rooms.get("forest"));
+		rooms.get("cave").setWestExit("forest");
 
-		rooms.get("doors to void").setEastExit(rooms.get("forest"));
-		rooms.get("doors to void").setWestExit(rooms.get("void"));
+		rooms.get("doors to void").setEastExit("forest");
+		rooms.get("doors to void").setWestExit("void");
 		
-		rooms.get("void").setEastExit(rooms.get("doors to void"));
+		rooms.get("void").setEastExit("doors to void");
+						
+		rooms.get("well").addItem("sword");
 
-		rooms.get("well").addItem(ItemManager.getInstance().getItem("sword"));
+		rooms.get("cratch").addItem("apple");
 
-		rooms.get("cratch").addItem(ItemManager.getInstance().getItem("apple"));
-
-		rooms.get("cave").addItem(ItemManager.getInstance().getItem("key to void"));
-
-		setCurrentRoom(rooms.get("forest"));
+		rooms.get("cave").addItem("key to void");
+		
+		rooms.get("void").addItem("chest");
+			
+		
+		
+		try {
+			objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("rooms.json"), rooms);
+			System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rooms));
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		
+	
+		ObjectMapper objectMapper = new ObjectMapper();		
+		
+		try {		
+			rooms.putAll(objectMapper.readValue(new File("rooms.json"),
+					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, Room.class)));	
+			String currentRoomName = objectMapper.readValue(new File("currentRoom.json"), String.class);;
+			setCurrentRoom(rooms.get(currentRoomName));
+			
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 	public Room getCurrentRoom() {

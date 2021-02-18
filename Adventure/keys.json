@@ -1,0 +1,14 @@
+{
+  "key to void" : {
+    "name" : "key to void",
+    "imageName" : "keyToVoid.jpg",
+    "collectable" : true,
+    "x" : 300,
+    "y" : 500,
+    "width" : 80,
+    "height" : 45,
+    "room" : "void",
+    "doors" : "doors to void",
+    "openedDoorImage" : "doorsToVoidOpened.jpg"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "forest" : {
+    "name" : "forest",
+    "description" : "Beautifull forest",
+    "imageName" : "forest.jpg",
+    "accessible" : true,
+    "northExit" : "well",
+    "southExit" : "cratch",
+    "westExit" : "doors to void",
+    "eastExit" : "cave",
+    "itemsNames" : [ ]
+  },
+  "cratch" : {
+    "name" : "cratch",
+    "description" : "Big cratch",
+    "imageName" : "cratch.jpg",
+    "accessible" : true,
+    "northExit" : "forest",
+    "southExit" : null,
+    "westExit" : null,
+    "eastExit" : null,
+    "itemsNames" : [ "apple" ]
+  },
+  "cave" : {
+    "name" : "cave",
+    "description" : "Beautifull cave",
+    "imageName" : "cave.jpeg",
+    "accessible" : true,
+    "northExit" : null,
+    "southExit" : null,
+    "westExit" : "forest",
+    "eastExit" : null,
+    "itemsNames" : [ "key to void" ]
+  },
+  "doors to void" : {
+    "name" : "doors to void",
+    "description" : "Some weird doors",
+    "imageName" : "doorsToVoid.jpg",
+    "accessible" : true,
+    "northExit" : null,
+    "southExit" : null,
+    "westExit" : "void",
+    "eastExit" : "forest",
+    "itemsNames" : [ ]
+  },
+  "void" : {
+    "name" : "void",
+    "description" : "Just void",
+    "imageName" : "void.jpg",
+    "accessible" : false,
+    "northExit" : null,
+    "southExit" : null,
+    "westExit" : null,
+    "eastExit" : "doors to void",
+    "itemsNames" : [ "chest" ]
+  },
+  "well" : {
+    "name" : "well",
+    "description" : "Very deep well",
+    "imageName" : "well.jpg",
+    "accessible" : true,
+    "northExit" : null,
+    "southExit" : "forest",
+    "westExit" : null,
+    "eastExit" : null,
+    "itemsNames" : [ "sword" ]
+  }
+}

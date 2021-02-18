@@ -1,18 +1,33 @@
 package lab;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 public class StartingWindowController {
-
+	
 	@FXML
-	private TextField playerNameEntered;
-
-	@FXML
-	void setInfoAction(ActionEvent event) {
-		World.getInstance().getPlayer().setName(playerNameEntered.getText());
-		World.getInstance().getController().getStartingWindow().close();
+	void endGameAction(ActionEvent event) {
+		System.exit(0);
 	}
 
+    @FXML
+    void newGameAction(ActionEvent event) {
+    	try {
+			World.getInstance().getController().newGameWindow();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void loadGameAction(ActionEvent event) {
+    	try {
+			World.getInstance().getController().showGui();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	World.getInstance().getController().loadGameAction(event);
+    }
 }

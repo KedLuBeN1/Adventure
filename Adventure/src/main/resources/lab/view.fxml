@@ -4,6 +4,9 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -15,15 +18,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="680.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lab.Controller">
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1449.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lab.Controller">
    <left>
-      <VBox fx:id="inventory" prefHeight="600.0" prefWidth="192.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="600.0" prefWidth="192.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="17.0" prefWidth="88.0" text="Inventory">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="188.0" text="Inventory">
                <VBox.margin>
-                  <Insets left="70.0" />
+                  <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </Label>
+            <VBox fx:id="inventory" prefHeight="692.0" prefWidth="192.0" />
          </children>
          <BorderPane.margin>
             <Insets left="5.0" right="5.0" />
@@ -36,7 +40,7 @@
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="199.0" text="Stats" />
             <HBox prefHeight="38.0" prefWidth="200.0">
                <children>
-                  <Label text="Player name" />
+                  <Label text="Player name:" />
                   <Text fx:id="playerName" strokeType="OUTSIDE" strokeWidth="0.0">
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -65,79 +69,110 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <TextField fx:id="commandEntry" onAction="#enterButtonAction" prefHeight="25.0" prefWidth="617.0">
+            <TextField fx:id="commandEntry" focusTraversable="false" onAction="#enterButtonAction" prefHeight="25.0" prefWidth="617.0">
                <HBox.margin>
                   <Insets left="190.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="enterButton" mnemonicParsing="false" onAction="#enterButtonAction" prefHeight="25.0" prefWidth="185.0" text="Enter" />
+            <Button fx:id="enterButton" focusTraversable="false" mnemonicParsing="false" onAction="#enterButtonAction" prefHeight="25.0" prefWidth="185.0" text="Enter" />
          </children>
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT">
+      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="1266.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#saveGameAction" text="Save game">
+            <MenuBar prefHeight="28.0" HBox.hgrow="ALWAYS">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadGameAction" text="Load" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveGameAction" text="Save" />
+                    <MenuItem mnemonicParsing="false" onAction="#endGameAction" text="Quit" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                  <items>
+                        <Menu fx:id="guiMenu" disable="true" mnemonicParsing="false" text="GUI">
+                           <items>
+                          <MenuItem mnemonicParsing="false" onAction="#setGUI1" text="Variant 1" />
+                              <MenuItem mnemonicParsing="false" onAction="#setGUI2" text="Variant 2" />
+                              <MenuItem mnemonicParsing="false" onAction="#setGUI3" text="Variant 3" />
+                           </items>
+                        </Menu>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#setAboutView" text="About" />
+                  </items>
+                </Menu>
+              </menus>
                <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="2.0" right="2.0" top="5.0" />
                </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#loadGameAction" text="Load game" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="endGameButton" focusTraversable="false" mnemonicParsing="false" onAction="#endGameAction" prefHeight="25.0" prefWidth="100.0" text="End Game" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </HBox.margin></Button>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" />
+               </padding>
+            </MenuBar>
          </children>
       </HBox>
    </top>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas fx:id="canvas" height="600.0" width="800.0">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Canvas>
-            <Button fx:id="westButton" layoutX="14.0" layoutY="274.0" mnemonicParsing="false" onAction="#goWestAction" prefHeight="53.0" prefWidth="0.0" rotate="180.0">
-               <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@arrow.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="eastButton" layoutX="722.0" layoutY="274.0" mnemonicParsing="false" onAction="#goEastAction" prefHeight="53.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@arrow.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="northButton" layoutX="368.0" layoutY="14.0" mnemonicParsing="false" onAction="#goNorthAction" prefHeight="53.0" prefWidth="0.0" rotate="-90.0">
-               <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@arrow.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="southButton" layoutX="368.0" layoutY="533.0" mnemonicParsing="false" onAction="#goSouthAction" prefHeight="53.0" prefWidth="0.0" rotate="90.0">
-               <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@arrow.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <BorderPane>
+               <center>
+                  <Canvas fx:id="canvas" height="600.0" width="800.0">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Canvas>
+               </center>
+               <left>
+                  <Button fx:id="westButton" mnemonicParsing="false" onAction="#goWestAction" prefHeight="53.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </left>
+               <top>
+                  <Button fx:id="northButton" mnemonicParsing="false" onAction="#goNorthAction" prefHeight="53.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                           <image>
+                              <Image url="@arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </top>
+               <bottom>
+                  <Button fx:id="southButton" mnemonicParsing="false" onAction="#goSouthAction" prefHeight="53.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </bottom>
+               <right>
+                  <Button fx:id="eastButton" mnemonicParsing="false" onAction="#goEastAction" prefHeight="53.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </right>
+            </BorderPane>
          </children>
       </AnchorPane>
    </center>

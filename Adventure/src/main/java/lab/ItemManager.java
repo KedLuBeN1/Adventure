@@ -1,17 +1,23 @@
 package lab;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
-import jakarta.json.Json;
-import jakarta.json.stream.JsonParser;
-import jakarta.json.stream.JsonParser.Event;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.json.stream.JsonGenerationException;
 
 public class ItemManager {
 
 	private static ItemManager instance;
 	private HashMap<String, Item> items = new HashMap<String, Item>();
+	private HashMap<String, HealingItem> healingItems = new HashMap<String, HealingItem>();
+	private HashMap<String, Key> keys = new HashMap<String, Key>();
+	private HashMap<String, OpenableItem> openableItems = new HashMap<String, OpenableItem>();
 	
 	private ItemManager() {
 		System.out.println("ItemManager:constructor()");
@@ -25,66 +31,54 @@ public class ItemManager {
 	}
 	
 	public void initItems() {
-		/*JsonParser jsonParser = null;
+		/*healingItems.put("sword",new HealingItem("sword", "sword.png", 450, 500, 50, 50, true));
+		healingItems.put("apple",new HealingItem("apple", "apple.png", 50, 500, 32, 32,true));
+		keys.put("key to void",new Key("key to void", "keyToVoid.jpg", 300, 500, 80, 45, "void", "doors to void", "doorsToVoidOpened.jpg",true));
+		openableItems.put("chest",new OpenableItem("chest", "closedChest.png","openedChest.png", 15, 35, 32, 32,false));
+		items.putAll(healingItems);
+		items.putAll(keys);
+		items.putAll(openableItems);
+		
+		
+		
 		try {
-			jsonParser = Json.createParser(new FileInputStream(getClass().getResource("/lab/items.json").getFile()));
-		} catch (FileNotFoundException e) {
-			System.out.println("CHYBA: Nenacetl jsem soubor s daty");
+		objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("keys.json"), keys);
+		objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("healingItems.json"), healingItems);
+		objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("openableItems.json"), openableItems);
+		System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(keys));
+		} catch (JsonGenerationException e) {
 			e.printStackTrace();
-			return;
-		}
-		Item i = null;
-		while (jsonParser.hasNext()) {
-			Event event = jsonParser.next();
-			switch (event) {
-			case KEY_NAME:
-				if (jsonParser.getString().equals("name")) {
-					jsonParser.next();
-					i.setName(jsonParser.getString());
-				} else if (jsonParser.getString().equals("imageName")) {
-					jsonParser.next();
-					i.setImageName(jsonParser.getString());
-				} else if (jsonParser.getString().equals("x")) {
-					jsonParser.next();
-					i.setX(Integer.parseInt(jsonParser.getString()));
-				} else if (jsonParser.getString().equals("y")) {
-					jsonParser.next();
-					i.setY(Integer.parseInt(jsonParser.getString()));
-				} else if (jsonParser.getString().equals("width")) {
-					jsonParser.next();
-					i.setWidth(Integer.parseInt(jsonParser.getString()));
-				} else if (jsonParser.getString().equals("height")) {
-					jsonParser.next();
-					i.setHeight(Integer.parseInt(jsonParser.getString()));
-				}
-				break;
-			case VALUE_STRING:
-
-			case VALUE_NUMBER:
-				//
-				break;
-			case START_ARRAY:
-				System.out.println("Zacatek pole");
-				break;
-			case END_ARRAY:
-				System.out.println("Konec pole");
-				break;
-			case START_OBJECT:
-				System.out.println(" Novy objekt");
-				i = new Item();
-				break;
-			case END_OBJECT:
-				System.out.println(" Konci objekt pridam do listu ");
-				items.put(i.getName(),i);
-				break;
-			default:
-				System.out.println("Neco se pokazilo pri nacitani");
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		
+		ObjectMapper objectMapper = new ObjectMapper();	
+		
+		
+		System.out.println("tadyyyy0");
+		try {	
+			System.out.println("tadyyyy1");
+			items.putAll(objectMapper.readValue(new File("keys.json"),
+					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, Key.class)));
+			items.putAll(objectMapper.readValue(new File("healingItems.json"),
+					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, HealingItem.class)));
+			items.putAll(objectMapper.readValue(new File("openableItems.json"),
+					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, OpenableItem.class)));
+			
+			System.out.println("tadyyyy2");
+			for(Item item : items.values()) {
+				System.out.println(item.getName());	
 			}
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		jsonParser.close();*/
-		items.put("sword",new Item("sword", "sword.png", 450, 500, 50, 50));
-		items.put("apple",new Item("apple", "apple.png", 50, 500, 32, 32));
-		items.put("key to void",new Item("key to void", "keyToVoid.jpg", 300, 500, 80, 45));
+		
 	}
 	
 	public HashMap<String, Item> getItems() {

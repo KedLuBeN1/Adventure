@@ -3,6 +3,7 @@ package lab;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.event.ActionEvent;
@@ -12,9 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -29,16 +33,24 @@ public class Controller {
 
 	private Command command;
 	private HashMap<String, Command> commands = new HashMap<String, Command>();
-	private Stage startingWindow = new Stage(); 	
-
+	private Stage startingWindow; 
+	private Stage newGameWindow;
+	private int GUI = 1;
+	
 	@FXML
 	private Canvas canvas;
 
+    @FXML
+    private BorderPane mainBorderPane;
+    
 	@FXML
 	private Button enterButton;
 
 	@FXML
 	private VBox inventory;
+	
+    @FXML
+    private Menu guiMenu;
 
 	@FXML
 	private Text playerName;
@@ -78,47 +90,71 @@ public class Controller {
 	}
 
 	@FXML
-	void setPlayerNameAction(ActionEvent event) {
-	
-	}
-
-	@FXML
 	void endGameAction(ActionEvent event) {
 		System.exit(0);
 	}
-
+    
     @FXML
-    void goEastAction(ActionEvent event) {
-    	checkCommand("go east");
+    void setGUI1(ActionEvent event){
+    	GUI = 1;
+    	try {
+			showGui();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
-    void goNorthAction(ActionEvent event) {
-    	checkCommand("go north");
+    void setGUI2(ActionEvent event){
+    	GUI = 2;
+    	try {
+			showGui();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
-    void goSouthAction(ActionEvent event) {
-    	checkCommand("go south");
+    void setGUI3(ActionEvent event){
+    	GUI = 3;
+    	try {
+			showGui();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void showGui() throws IOException{  	
+    	switch(GUI) {
+    	case 1:	mainBorderPane.setCenter(FXMLLoader.load(getClass().getResource("/lab/GUI1.fxml")));
+    		break;
+    	case 2: mainBorderPane.setCenter(FXMLLoader.load(getClass().getResource("/lab/GUI2.fxml")));
+    		break;
+    	case 3: mainBorderPane.setCenter(FXMLLoader.load(getClass().getResource("/lab/GUI3.fxml")));
+    		break;
+    	}
+		canvasAction();
+    } 
+
+    @FXML
+    void setAboutView(ActionEvent event) throws IOException {
+    	mainBorderPane.setCenter(FXMLLoader.load(getClass().getResource("/lab/aboutView.fxml")));
     }
 
     @FXML
-    void goWestAction(ActionEvent event) {
-    	checkCommand("go west");
-    }
-
-	@FXML
-	void loadGameAction(ActionEvent event) {
-		try {
+    void loadGameAction(ActionEvent event) {
+    	try {
+    		guiMenu.setDisable(false);
+    		showGui();
 			System.out.println("tak co je 0");
 			SaveData data = (SaveData) SaveLoadManager.getInstance().load("first.save");
 			System.out.println("tak co je 1");
 			World.getInstance().getPlayer().setHP(data.getCurrentHP());
 			World.getInstance().getPlayer().setMaxHP(data.getMaxHP());
 			World.getInstance().getPlayer().setName(data.getPlayerName());
-			RoomManager.getInstance().setCurrentRoom(data.getCurrentRoom()); 
 			RoomManager.getInstance().setRooms(data.getRooms());
 			World.getInstance().getPlayer().setInventory(data.getInventory());
+			RoomManager.getInstance().setCurrentRoom(data.getCurrentRoom()); 
 			System.out.println("Game has been loaded");
 			displayText("Game has been loaded");
 		} catch (Exception e) {
@@ -126,8 +162,8 @@ public class Controller {
 			System.out.println(e.getMessage());
 			System.out.println("yasay");
 		}
-	}
-
+    }
+    
 	@FXML
 	void saveGameAction(ActionEvent event) {
 		SaveData data = new SaveData();
@@ -159,21 +195,27 @@ public class Controller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		initCanvas();
 	}
 		
 	private void startingWindow() throws Exception{
+		mainBorderPane.setCenter(FXMLLoader.load(getClass().getResource("/lab/startingWindowView.fxml")));
+	}
+	public void newGameWindow() throws Exception{
+		mainBorderPane.setCenter(FXMLLoader.load(getClass().getResource("/lab/newGameView.fxml")));
+		newGameText();
+	}
+	
+	private void newGameText() {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
 		try {
-			startingWindow.setTitle("Create player");
-			startingWindow.initModality(Modality.APPLICATION_MODAL);
-			startingWindow.setOnCloseRequest(this::exitProgram);
-			Pane pane = new FXMLLoader(getClass().getResource("/lab/startingWindowView.fxml")).load();
-			Scene scene = new Scene(pane);
-			startingWindow.setScene(scene);
-			startingWindow.showAndWait();
-		} catch (Exception e) {
+			gc.setFont(Font.loadFont(new FileInputStream(new File("BlackChancery.ttf")), 45));
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		gc.setFill(Color.ORANGERED);
+		gc.setTextAlign(TextAlignment.CENTER);
+		gc.fillText("Welcome to my adventure game\n"+playerName.getText()+"\nType in help to get available commands",
+				canvas.getWidth() / 2, canvas.getHeight() / 2.5);	
 	}
 	
 	private void exitProgram(WindowEvent evt) {
@@ -196,29 +238,25 @@ public class Controller {
 		World.getInstance().setPlayer(new Player(150));
 	}
 
-	private void initCanvas() {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		try {
-			gc.setFont(Font.loadFont(new FileInputStream(new File("BlackChancery.ttf")), 45));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		gc.setFill(Color.ORANGERED);
-		gc.setTextAlign(TextAlignment.CENTER);
-		gc.fillText("Welcome to my adventure game\n"+playerName.getText()+"\nType in help to get available commands",
-				canvas.getWidth() / 2, canvas.getHeight() / 2.5);
+	private void canvasAction() {
 		canvas.setOnMouseClicked(event -> {
 			System.out.println("X " + event.getX() + " Y " + event.getY());
-			for (Item item : RoomManager.getInstance().getCurrentRoom().getItems()) {
+			for (Item item : RoomManager.getInstance().getCurrentRoom().returnItems()) {
 				if (item.clickedOnItem(event.getX(), event.getY())) {
 					System.out.println("You have clicked on " + item.getName());
-					World.getInstance().getPlayer().addItemToInventory(item);
-					RoomManager.getInstance().getCurrentRoom().removeItem(item);
+					if(item.isCollectable()) {
+						World.getInstance().getPlayer().addItemToInventory(item);
+						RoomManager.getInstance().getCurrentRoom().removeItem(item);
+						World.getInstance().getController().displayText("You have picked up "+item.getName());
+					}
+					else {
+						item.itemAction();
+						World.getInstance().getController().displayText("You have opened up "+item.getName());
+					}
 					break;
 				}
 			}
-		});
-		
+		});	
 	}
 
 	private void initCommands() {
@@ -250,6 +288,29 @@ public class Controller {
 	public Controller() {
 		System.out.println("Controller:constructor()");
 	}
+	
+	public void goEastAction() {
+	    checkCommand("go east");
+	}
+
+ 
+    public void goNorthAction() {
+    	checkCommand("go north");
+    }
+
+ 
+    public void goSouthAction() {
+    	checkCommand("go south");
+    }
+
+ 
+    public void goWestAction() {
+    	checkCommand("go west");
+    }
+    
+    public void disableGuiMenu(boolean b) {
+    	guiMenu.setDisable(b);
+    }
 
 	public void showRoom(String imageName) {
 		if(ImageManager.getInstance().getImage(imageName) == null) {
@@ -268,28 +329,28 @@ public class Controller {
 	public void showArrows() {
 		Room currentRoom = RoomManager.getInstance().getCurrentRoom();
 		
-		if(currentRoom.getNorthExit() != null && currentRoom.getNorthExit().isAccessible()) {
+		if(currentRoom.getNorthExit() != null && currentRoom.northExitObject().isAccessible()) {
 			northButton.setVisible(true);
 		}
 		else {
 			northButton.setVisible(false);
 		}
 		
-		if(currentRoom.getSouthExit() != null && currentRoom.getSouthExit().isAccessible()) {
+		if(currentRoom.getSouthExit() != null && currentRoom.southExitObject().isAccessible()) {
 			southButton.setVisible(true);
 		}
 		else {
 			southButton.setVisible(false);
 		}
 		
-		if(currentRoom.getEastExit() != null && currentRoom.getEastExit().isAccessible()) {
+		if(currentRoom.getEastExit() != null && currentRoom.eastExitObject().isAccessible()) {
 			eastButton.setVisible(true);
 		}
 		else {
 			eastButton.setVisible(false);
 		}
 		
-		if(currentRoom.getWestExit() != null && currentRoom.getWestExit().isAccessible()) {
+		if(currentRoom.getWestExit() != null && currentRoom.westExitObject().isAccessible()) {
 			westButton.setVisible(true);
 		}
 		else {
@@ -306,16 +367,23 @@ public class Controller {
 	}
 
 	public void addItem(Item item) {
+		System.out.println("Nacitam item");
+		System.out.println(item.getName()+" sirka: "+inventory.getWidth());
 		Button itemButton = new Button(item.getName());
 		itemButton.setPrefWidth(inventory.getWidth());
 		inventory.getChildren().add(itemButton);
 		itemButton.setOnAction(event -> {
 			if(item.itemAction()){
+			System.out.println("removeItem");
 			inventory.getChildren().remove(itemButton);
 			World.getInstance().getPlayer().removeItemFromInventory(item);
 			}
 		});
 		System.out.println("Item " + item.getName() + " was displayed");
+	}
+	
+	public void clearInventory() {
+		inventory.getChildren().clear();
 	}
 
 	public void hideImage() {
@@ -354,5 +422,52 @@ public class Controller {
 	
 	public Stage getStartingWindow() {
 		return startingWindow;
+	} 
+	public Stage getNewGameWindow() {
+		return newGameWindow;
+	}
+
+	public Canvas getCanvas() {
+		return canvas;
+	}
+
+	public void setCanvas(Canvas canvas) {
+		this.canvas = canvas;
+	}
+
+	public BorderPane getMainBorderPane() {
+		return mainBorderPane;
+	}
+
+	public Button getWestButton() {
+		return westButton;
+	}
+
+	public void setWestButton(Button westButton) {
+		this.westButton = westButton;
+	}
+
+	public Button getEastButton() {
+		return eastButton;
+	}
+
+	public void setEastButton(Button eastButton) {
+		this.eastButton = eastButton;
+	}
+
+	public Button getNorthButton() {
+		return northButton;
+	}
+
+	public void setNorthButton(Button northButton) {
+		this.northButton = northButton;
+	}
+
+	public Button getSouthButton() {
+		return southButton;
+	}
+
+	public void setSouthButton(Button southButton) {
+		this.southButton = southButton;
 	} 
 }

@@ -6,13 +6,14 @@ public class Room implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String name;
-	private String imageName;
-	private Room northExit = null;
-	private Room southExit = null;
-	private Room westExit = null;
-	private Room eastExit = null;
-	private boolean accessible;
 	private String description = "";
+	private String imageName;
+	private boolean accessible;
+	private String northExit = null;
+	private String southExit = null;
+	private String westExit = null;
+	private String eastExit = null;
+	private ArrayList<String> itemsNames = new ArrayList<String>();
 	private ArrayList<Item> items = new ArrayList<Item>();
 	
 	public Room(String name, String description, String imageName, boolean accessible) {
@@ -40,9 +41,15 @@ public class Room implements java.io.Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getImageName() {
+		return imageName;
+	}
+	
 	public void setImageName(String imageName) {
 		this.imageName=imageName;
 	}
+	
 	public void showRoom() {
 		World.getInstance().getController().showRoom(imageName);
 		for(Item item: items) {
@@ -57,45 +64,73 @@ public class Room implements java.io.Serializable{
 	public void setAccessible(boolean accessible) {
 		this.accessible = accessible;
 	}
-
-	public ArrayList<Item> getItems() {
+	
+	public void setItemsNames(ArrayList<String> itemsNames) {
+		this.itemsNames = itemsNames;
+		for(String itemName : itemsNames) {
+			items.add(ItemManager.getInstance().getItem(itemName));
+		}
+	}
+	
+	public ArrayList<String> getItemsNames() {
+		return itemsNames;
+	}
+	
+	public ArrayList<Item> returnItems() {
 		return items;
 	}
-
-	public Room getNorthExit() {
+	
+	public String getNorthExit() {
 		return northExit;
 	}
-
-	public void setNorthExit(Room northExit) {
+	
+	public Room northExitObject() {
+		return RoomManager.getInstance().getRoom(northExit);
+	}
+	
+	public void setNorthExit(String northExit) {
 		this.northExit = northExit;
 	}
 
-	public Room getSouthExit() {
+	public String getSouthExit() {
 		return southExit;
 	}
-
-	public void setSouthExit(Room southExit) {
+	
+	public Room southExitObject() {
+		return RoomManager.getInstance().getRoom(southExit);
+	}
+	
+	public void setSouthExit(String southExit) {
 		this.southExit = southExit;
 	}
 
-	public Room getWestExit() {
+	public String getWestExit() {
 		return westExit;
 	}
-
-	public void setWestExit(Room westExit) {
+	
+	public Room westExitObject() {
+		return RoomManager.getInstance().getRoom(westExit);
+	}
+	
+	public void setWestExit(String westExit) {
 		this.westExit = westExit;
 	}
 
-	public Room getEastExit() {
+	public String getEastExit() {
 		return eastExit;
 	}
+	
+	public Room eastExitObject() {
+		return RoomManager.getInstance().getRoom(eastExit);
+	}
 
-	public void setEastExit(Room eastExit) {
+	public void setEastExit(String eastExit) {
 		this.eastExit = eastExit;
 	}
 	
-	public void addItem(Item item) {
-		items.add(item);
+	public void addItem(String item) {
+		itemsNames.add(item);
+		items.add(ItemManager.getInstance().getItem(item));
 	}
 	
 	public void removeItem(Item item) {
@@ -104,12 +139,6 @@ public class Room implements java.io.Serializable{
 		System.out.println("Item "+item.getName()+" was removed from room");
 	}
 	
-	public void saveRoom() {
-		
-	}
 	
-	public void loadRoom() {
-		
-	}
 
 }

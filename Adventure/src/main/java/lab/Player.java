@@ -73,6 +73,7 @@ public class Player {
 
 	public void setInventory(ArrayList<Item> inventory) {
 		this.inventory = inventory;
+		World.getInstance().getController().clearInventory();
 		for(Item item : inventory) {
 			World.getInstance().getController().addItem(item);
 		}

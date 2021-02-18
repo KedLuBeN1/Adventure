@@ -59,23 +59,23 @@ public class Command {
 			setPhrase("You have lost " + damage + " HP");
 		}
 
-		else if (name == "go north" && RoomManager.getInstance().getCurrentRoom().getNorthExit() != null && RoomManager.getInstance().getCurrentRoom().getNorthExit().isAccessible()) {
-			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().getNorthExit());
+		else if (name == "go north" && RoomManager.getInstance().getCurrentRoom().getNorthExit() != null && RoomManager.getInstance().getCurrentRoom().northExitObject().isAccessible()) {
+			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().northExitObject());
 			setPhrase(RoomManager.getInstance().getCurrentRoom().getDescription());
 		}
 
-		else if (name == "go south" && RoomManager.getInstance().getCurrentRoom().getSouthExit() != null && RoomManager.getInstance().getCurrentRoom().getSouthExit().isAccessible()) {
-			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().getSouthExit());
+		else if (name == "go south" && RoomManager.getInstance().getCurrentRoom().getSouthExit() != null && RoomManager.getInstance().getCurrentRoom().southExitObject().isAccessible()) {
+			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().southExitObject());
 			setPhrase(RoomManager.getInstance().getCurrentRoom().getDescription());
 		}
 		
-		else if (name == "go west" && RoomManager.getInstance().getCurrentRoom().getWestExit() != null && RoomManager.getInstance().getCurrentRoom().getWestExit().isAccessible()) {
-			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().getWestExit());
+		else if (name == "go west" && RoomManager.getInstance().getCurrentRoom().getWestExit() != null && RoomManager.getInstance().getCurrentRoom().westExitObject().isAccessible()) {
+			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().westExitObject());
 			setPhrase(RoomManager.getInstance().getCurrentRoom().getDescription());
 		} 
 		
-		else if (name == "go east" && RoomManager.getInstance().getCurrentRoom().getEastExit() != null && RoomManager.getInstance().getCurrentRoom().getEastExit().isAccessible()) {
-			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().getEastExit());
+		else if (name == "go east" && RoomManager.getInstance().getCurrentRoom().getEastExit() != null && RoomManager.getInstance().getCurrentRoom().eastExitObject().isAccessible()) {
+			RoomManager.getInstance().setCurrentRoom(RoomManager.getInstance().getCurrentRoom().eastExitObject());
 			setPhrase(RoomManager.getInstance().getCurrentRoom().getDescription());
 		}
 		else if(name == "get rooms") {
