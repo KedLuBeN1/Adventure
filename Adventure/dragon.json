@@ -1,0 +1,14 @@
+{
+  "dragon" : {
+    "name" : "dragon",
+    "imageName" : "dragon.gif",
+    "currentHP" : 150,
+    "maxHP" : 150,
+    "damage" : 30,
+    "collectable" : false,
+    "x" : 150,
+    "y" : 200,
+    "width" : 150,
+    "height" : 120
+  }
+}

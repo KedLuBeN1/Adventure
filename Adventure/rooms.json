@@ -16,7 +16,7 @@
     "imageName" : "cratch.jpg",
     "accessible" : true,
     "northExit" : "forest",
-    "southExit" : null,
+    "southExit" : "bridge",
     "westExit" : null,
     "eastExit" : null,
     "itemsNames" : [ "apple" ]
@@ -64,5 +64,38 @@
     "westExit" : null,
     "eastExit" : null,
     "itemsNames" : [ "sword" ]
-  }
+  },
+   "bridge" : {
+    "name" : "bridge",
+    "description" : "Dark bridge",
+    "imageName" : "bridge.png",
+    "accessible" : true,
+    "northExit" : "cratch",
+    "southExit" : "gate to arena",
+    "westExit" : null,
+    "eastExit" : null,
+    "itemsNames" : [ ]
+  },
+   "arena" : {
+    "name" : "arena",
+    "description" : "Combat arena",
+    "imageName" : "arena.jpg",
+    "accessible" : false,
+    "northExit" : null,
+    "southExit" : null,
+    "westExit" : null,
+    "eastExit" : "gate to arena",
+    "itemsNames" : [ "dragon" ]
+  },
+   "gate to arena" : {
+    "name" : "gate to arena",
+    "description" : "Gate to arena",
+    "imageName" : "gateToArena.jpg",
+    "accessible" : true,
+    "northExit" : "bridge",
+    "southExit" : null,
+    "westExit" : "arena",
+    "eastExit" : null,
+    "itemsNames" : [ ]
+  } 
 }

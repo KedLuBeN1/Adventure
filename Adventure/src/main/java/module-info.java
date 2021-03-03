@@ -5,6 +5,6 @@ module lab01{
 	requires javafx.base;
 	requires jakarta.json;
 	requires com.fasterxml.jackson.databind;
-    opens lab to javafx.fxml;
-    exports lab;
+    opens game to javafx.fxml;
+    exports game;
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="119.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GJ U WON " wrappingWidth="395.13671875">
+         <font>
+            <Font name="Universal Math 1 BT" size="68.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

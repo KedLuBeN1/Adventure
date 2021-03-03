@@ -1,13 +1,4 @@
 {
-  "sword" : {
-    "name" : "sword",
-    "imageName" : "sword.png",
-    "collectable" : true,
-    "x" : 450,
-    "y" : 500,
-    "width" : 50,
-    "height" : 50
-  },
   "apple" : {
     "name" : "apple",
     "imageName" : "apple.png",
@@ -15,6 +6,7 @@
     "x" : 50,
     "y" : 500,
     "width" : 32,
-    "height" : 32
+    "height" : 32,
+    "heal" : 30
   }
 }

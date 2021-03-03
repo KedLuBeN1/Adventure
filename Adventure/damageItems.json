@@ -1,0 +1,12 @@
+{
+  "sword" : {
+    "name" : "sword",
+    "imageName" : "sword.png",
+    "collectable" : true,
+    "x" : 450,
+    "y" : 500,
+    "width" : 50,
+    "height" : 50,
+    "damage" : 40
+  }
+}
