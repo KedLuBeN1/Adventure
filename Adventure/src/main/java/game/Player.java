@@ -66,6 +66,7 @@ public class Player implements java.io.Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+		World.getInstance().getController().setName(name);
 	}
 	
 	public void addItemToInventory(Item item) {
@@ -78,7 +79,7 @@ public class Player implements java.io.Serializable{
 		inventory.remove(item);
 	}
 
-	public ArrayList<Item> sgetInventory() {
+	public ArrayList<Item> getInventory() {
 		return inventory;
 	}
 	

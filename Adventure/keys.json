@@ -10,5 +10,18 @@
     "room" : "void",
     "doors" : "doors to void",
     "openedDoorImage" : "doorsToVoidOpened.jpg"
-  }
+  },
+  "key to arena" : {
+    "name" : "key to arena",
+    "imageName" : "keyToArena.png",
+    "collectable" : true,
+    "x" : 500,
+    "y" : 50,
+    "width" : 80,
+    "height" : 45,
+    "room" : "arena",
+    "doors" : "doors to arena",
+    "openedDoorImage" : "doorsToArenaOpened.jpeg"
+  }  
 }
+

@@ -1,16 +1,12 @@
 package game;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -20,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -180,6 +175,7 @@ public class Controller {
 		rightVBox.setVisible(false);
 		bottomHBox.setVisible(false);
 		menuItemSave.setVisible(false);
+		dragonStats.setVisible(false);
 		initialize();
 		clearInventory();
 		try {
@@ -196,6 +192,7 @@ public class Controller {
 		leftVBox.setVisible(false);
 		rightVBox.setVisible(false);
 		bottomHBox.setVisible(false);
+		dragonStats.setVisible(false);
 		try {
 			loadGameWindow();
 		} catch (Exception e) {
@@ -230,7 +227,7 @@ public class Controller {
 		SaveData data = new SaveData();
 		data.setPlayer(World.getInstance().getPlayer());
 		data.setCurrentRoom(RoomManager.getInstance().getCurrentRoom());
-		data.setInventory(World.getInstance().getPlayer().sgetInventory());
+		data.setInventory(World.getInstance().getPlayer().getInventory());
 		data.setRooms(RoomManager.getInstance().getRooms());
 		try {
 			SaveLoadManager.getInstance().save(data, playerName.getText() + ".save");

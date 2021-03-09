@@ -52,7 +52,7 @@
     "southExit" : null,
     "westExit" : null,
     "eastExit" : "doors to void",
-    "itemsNames" : [ "chest" ]
+    "itemsNames" : [ "chest","key to arena" ]
   },
   "well" : {
     "name" : "well",
@@ -71,7 +71,7 @@
     "imageName" : "bridge.png",
     "accessible" : true,
     "northExit" : "cratch",
-    "southExit" : "gate to arena",
+    "southExit" : "doors to arena",
     "westExit" : null,
     "eastExit" : null,
     "itemsNames" : [ ]
@@ -83,19 +83,19 @@
     "accessible" : false,
     "northExit" : null,
     "southExit" : null,
-    "westExit" : null,
-    "eastExit" : "gate to arena",
+    "westExit" : "doors to arena",
+    "eastExit" : null,
     "itemsNames" : [ "dragon" ]
   },
-   "gate to arena" : {
-    "name" : "gate to arena",
-    "description" : "Gate to arena",
-    "imageName" : "gateToArena.jpg",
+   "doors to arena" : {
+    "name" : "doors to arena",
+    "description" : "Doors to arena",
+    "imageName" : "doorsToArena.jpeg",
     "accessible" : true,
     "northExit" : "bridge",
     "southExit" : null,
-    "westExit" : "arena",
-    "eastExit" : null,
+    "westExit" : null,
+    "eastExit" : "arena",
     "itemsNames" : [ ]
   } 
 }

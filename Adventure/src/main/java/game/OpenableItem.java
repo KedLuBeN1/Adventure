@@ -3,7 +3,6 @@ package game;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 
 public class OpenableItem extends Item implements java.io.Serializable{
 
@@ -31,7 +30,6 @@ public class OpenableItem extends Item implements java.io.Serializable{
 	@Override
 	public boolean itemAction() {
 		this.setImageName(image2Name);
-		BorderPane mainBorderPane = World.getInstance().getController().getMainBorderPane();
 		try {
 			World.getInstance().getController().getMainBorderPane().setCenter(FXMLLoader.load(getClass().getResource("/game/openedChestView.fxml")));
 		} catch (IOException e) {

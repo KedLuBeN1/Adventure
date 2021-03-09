@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="313.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LoadGameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LoadGameController">
    <children>
       <Label layoutX="40.0" layoutY="28.0" prefHeight="17.0" prefWidth="174.0" text="Enter name of your character" />
       <Label layoutX="40.0" layoutY="70.0" prefHeight="29.0" prefWidth="80.0" text="Player name" />

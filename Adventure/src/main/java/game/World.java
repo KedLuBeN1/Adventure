@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.JsonParseException;
 import jakarta.json.stream.JsonGenerationException;
 
 public class World {

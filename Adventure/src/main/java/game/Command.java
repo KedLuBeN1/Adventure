@@ -1,14 +1,11 @@
 package game;
 
-import java.util.Random;
-
 public class Command {
 
 	private String name;
 	private String phrase;
 	private String description;
 	private boolean available = true;
-	private Random rand = new Random();
 
 	public boolean isAvailable() {
 		return available;

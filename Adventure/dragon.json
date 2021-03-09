@@ -2,8 +2,8 @@
   "dragon" : {
     "name" : "dragon",
     "imageName" : "dragon.gif",
-    "currentHP" : 150,
-    "maxHP" : 150,
+    "currentHP" : 120,
+    "maxHP" : 120,
     "damage" : 30,
     "collectable" : false,
     "x" : 150,
