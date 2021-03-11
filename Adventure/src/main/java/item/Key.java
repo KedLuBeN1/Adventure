@@ -1,4 +1,7 @@
-package game;
+package item;
+
+import game.World;
+import room.RoomManager;
 
 public class Key extends Item implements java.io.Serializable{
 

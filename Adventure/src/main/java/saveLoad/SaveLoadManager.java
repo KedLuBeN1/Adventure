@@ -1,4 +1,4 @@
-package game;
+package saveLoad;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

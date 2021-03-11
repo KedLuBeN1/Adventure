@@ -1,8 +1,14 @@
-package game;
+package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
 
+import game.Command;
+import game.ImageManager;
+import game.Player;
+import game.World;
+import item.Item;
+import item.ItemManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +24,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import room.Room;
+import room.RoomManager;
+import saveLoad.SaveData;
+import saveLoad.SaveLoadManager;
 
 public class Controller {
 

@@ -1,4 +1,6 @@
-package game;
+package item;
+
+import game.World;
 
 public class HealingItem extends Item implements java.io.Serializable{
 

@@ -2,6 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+import item.Item;
+
+
 public class Player implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;

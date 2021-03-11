@@ -1,7 +1,11 @@
-package game;
+package saveLoad;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import game.Player;
+import item.Item;
+import room.Room;
 
 public class SaveData implements java.io.Serializable {
 

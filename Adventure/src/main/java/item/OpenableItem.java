@@ -1,7 +1,8 @@
-package game;
+package item;
 
 import java.io.IOException;
 
+import game.World;
 import javafx.fxml.FXMLLoader;
 
 public class OpenableItem extends Item implements java.io.Serializable{

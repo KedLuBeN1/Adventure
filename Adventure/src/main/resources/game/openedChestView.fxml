@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="313.0" prefWidth="445.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.OpenedChestController">
+<AnchorPane prefHeight="313.0" prefWidth="445.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OpenedChestController">
    <children>
       <Label layoutX="28.0" layoutY="157.0" prefHeight="16.0" prefWidth="389.0" text="Secret code is    70543" textFill="#fffffff7">
          <font>

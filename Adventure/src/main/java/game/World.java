@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import controller.Controller;
 import jakarta.json.stream.JsonGenerationException;
 
 public class World {
@@ -26,9 +28,9 @@ public class World {
 
 	public void setPlayer(Player player) {
 		this.player = player;
-		World.getInstance().getController().setCurrent_HP(player.getCurrent_HP());
-		World.getInstance().getController().setMax_HP(player.getMax_HP());
-		World.getInstance().getController().setDamage(player.getDamage());
+		controller.setCurrent_HP(player.getCurrent_HP());
+		controller.setMax_HP(player.getMax_HP());
+		controller.setDamage(player.getDamage());
 	}
 
 	private World(){

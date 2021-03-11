@@ -1,4 +1,6 @@
-package game;
+package item;
+
+import game.World;
 
 public abstract class Item implements java.io.Serializable{
 

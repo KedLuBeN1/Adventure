@@ -1,5 +1,8 @@
 package game;
 
+import room.Room;
+import room.RoomManager;
+
 public class Command {
 
 	private String name;

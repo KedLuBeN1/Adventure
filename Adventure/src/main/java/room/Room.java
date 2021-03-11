@@ -1,6 +1,10 @@
-package game;
+package room;
 
 import java.util.ArrayList;
+
+import game.World;
+import item.Item;
+import item.ItemManager;
 
 public class Room implements java.io.Serializable{
 

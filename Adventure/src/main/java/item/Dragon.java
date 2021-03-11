@@ -1,8 +1,9 @@
-package game;
+package item;
 
 import java.io.IOException;
 import java.util.Random;
 
+import game.World;
 import javafx.fxml.FXMLLoader;
 
 public class Dragon extends Item implements java.io.Serializable{

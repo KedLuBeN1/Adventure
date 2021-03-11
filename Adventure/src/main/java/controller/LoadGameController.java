@@ -1,5 +1,6 @@
-package game;
+package controller;
 
+import game.World;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

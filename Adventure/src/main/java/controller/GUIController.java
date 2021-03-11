@@ -1,9 +1,11 @@
-package game;
+package controller;
 
+import game.World;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import room.RoomManager;
 
 public class GUIController {
 
