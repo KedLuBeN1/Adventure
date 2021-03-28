@@ -110,7 +110,6 @@ public class Controller {
 
 	@FXML
 	void enterButtonAction(ActionEvent event) {
-		System.out.println("enterButton " + commandEntry.getText());
 		checkCommand(commandEntry.getText().toLowerCase());
 		commandEntry.clear();
 	}
@@ -211,18 +210,14 @@ public class Controller {
 
 	public void loadGame() {
 		try {
-			// menuItemNew.setVisible(false);
 			menuItemSave.setVisible(true);
 			guiMenu.setDisable(false);
 			showGui();
-			System.out.println("tak co je 0");
 			SaveData data = (SaveData) SaveLoadManager.getInstance().load(playerName.getText() + ".save");
-			System.out.println("tak co je 1");
 			World.getInstance().setPlayer(data.getPlayer());
 			RoomManager.getInstance().setRooms(data.getRooms());
 			World.getInstance().getPlayer().accessInventory(data.getInventory());
 			RoomManager.getInstance().setCurrentRoom(data.getCurrentRoom());
-			System.out.println("Game has been loaded");
 			displayText("Game has been loaded");
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -239,7 +234,6 @@ public class Controller {
 		data.setRooms(RoomManager.getInstance().getRooms());
 		try {
 			SaveLoadManager.getInstance().save(data, playerName.getText() + ".save");
-			System.out.println("Game has been saved");
 			displayText("Game has been saved");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -248,7 +242,6 @@ public class Controller {
 
 	@FXML
 	public void initialize() {
-		System.out.println("initialize ");
 		initConroller();
 		initPlayer();
 		initCommands();
@@ -291,14 +284,12 @@ public class Controller {
 
 	private void canvasAction() {
 		canvas.setOnMouseClicked(event -> {
-			System.out.println("X " + event.getX() + " Y " + event.getY());
 			for (Item item : RoomManager.getInstance().getCurrentRoom().returnItems()) {
 				if (item.clickedOnItem(event.getX(), event.getY())) {
-					System.out.println("You have clicked on " + item.getName());
 					if (item.isCollectable()) {
 						World.getInstance().getPlayer().addItemToInventory(item);
 						RoomManager.getInstance().getCurrentRoom().removeItem(item);
-						World.getInstance().getController().displayText("You have picked up " + item.getName());
+						World.getInstance().getController().displayText("You have picked up " + item.getName()+".");
 					} else {
 						item.itemAction();
 					}
@@ -334,7 +325,6 @@ public class Controller {
 	}
 
 	public Controller() {
-		System.out.println("Controller:constructor()");
 	}
 
 	public void goEastAction() {
@@ -375,12 +365,10 @@ public class Controller {
 
 	public void showRoom(String imageName) {
 		if (ImageManager.getInstance().getImage(imageName) == null) {
-			System.out.println("Tenhle obrazek jeste neznam, vytvorim ho");
 			ImageManager.getInstance().addImage(imageName);
 		}
 		Image image = ImageManager.getInstance().getImage(imageName);
 		canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
-
 		showArrows();
 	}
 
@@ -414,7 +402,6 @@ public class Controller {
 
 	public void showItem(String imageName, int x, int y, int w, int h) {
 		if (ImageManager.getInstance().getImage(imageName) == null) {
-			System.out.println("Tenhle obrazek itemu jeste neznam, vytvorim ho");
 			ImageManager.getInstance().addImage(imageName);
 		}
 		Image image = ImageManager.getInstance().getImage(imageName);
@@ -450,19 +437,15 @@ public class Controller {
 	}
 
 	public void addItem(Item item) {
-		System.out.println("Nacitam item");
-		System.out.println(item.getName() + " sirka: " + inventory.getWidth());
 		Button itemButton = new Button(item.getName());
 		itemButton.setPrefWidth(inventory.getWidth());
 		inventory.getChildren().add(itemButton);
 		itemButton.setOnAction(event -> {
 			if (item.itemAction()) {
-				System.out.println("removeItem");
 				inventory.getChildren().remove(itemButton);
 				World.getInstance().getPlayer().removeItemFromInventory(item);
 			}
 		});
-		System.out.println("Item " + item.getName() + " was displayed");
 	}
 
 	public void clearInventory() {
@@ -474,8 +457,7 @@ public class Controller {
 	}
 
 	public void showCommands() {
-		output.setText(null);
-		output.appendText("All available commands\n");
+		output.setText("All available commands\n");
 		for (Command command : commands.values()) {
 			output.appendText(command.getInfo());
 		}

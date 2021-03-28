@@ -112,7 +112,7 @@
          <children>
             <TextField fx:id="commandEntry" focusTraversable="false" onAction="#enterButtonAction" prefHeight="25.0" prefWidth="617.0">
                <HBox.margin>
-                  <Insets left="300.0" />
+                  <Insets left="280.0" />
                </HBox.margin>
             </TextField>
             <Button fx:id="enterButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#enterButtonAction" prefHeight="25.0" prefWidth="185.0" text="Enter" />

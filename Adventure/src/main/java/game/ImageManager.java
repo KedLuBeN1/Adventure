@@ -10,7 +10,6 @@ public class ImageManager {
 	private HashMap<String, Image> images = new HashMap<String, Image>();
 	
 	private ImageManager() {
-		System.out.println("ImageManager:constructor()");
 	}
 	
 	public void addImage(String imageName) {

@@ -18,7 +18,6 @@ public class Player implements java.io.Serializable{
 	}
 	
 	public Player(int max_HP, int current_HP, int damage) {
-		System.out.println("Player:constructor()");
 		this.currentHP = current_HP;
 		this.maxHP = max_HP;
 		this.damage = damage;
@@ -74,7 +73,6 @@ public class Player implements java.io.Serializable{
 	
 	public void addItemToInventory(Item item) {
 		inventory.add(item);
-		System.out.println("Item "+item.getName()+" was added to player inventory");
 		World.getInstance().getController().addItem(item);
 	}
 	

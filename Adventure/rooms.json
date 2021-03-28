@@ -1,7 +1,7 @@
 {
   "room1" : {
     "name" : "room1",
-    "description" : "There is a crossroads here\nYou can go either west or east or south",
+    "description" : "There is a crossroads.\nYou can go either west or east or south.",
     "imageName" : "room1.jpg",
     "accessible" : true,
     "northExit" : null,
@@ -12,7 +12,7 @@
   },
   "room2" : {
     "name" : "room2",
-    "description" : "There is some path\nWatch out some item may be here",
+    "description" : "There is an old path.\nWatch out, there may be an item.\nYou can go back to that crossroads.",
     "imageName" : "room2.jpg",
     "accessible" : true,
     "northExit" : null,
@@ -23,7 +23,7 @@
   },
   "room3" : {
 	"name" : "room3",
-	"description" : "Hmmmmmmmm",
+	"description" : "There is a path that curves left.",
 	"imageName" : "room3.jpg",
 	"accessible" : true,
 	"northExit" : "room4",
@@ -34,7 +34,7 @@
   },
   "room4" : {
 	"name" : "room4",
-	"description" : "Hmmmmmmmm",
+	"description" : "Is it a bridge down there?\nWatch out, there may be an item.",
 	"imageName" : "room4.jpg",
 	"accessible" : true,
 	"northExit" : "room5",
@@ -45,7 +45,7 @@
   },
   "room5" : {
 	"name" : "room5",
-	"description" : "Hmmmmmmmm",
+	"description" : "There is a bridge, \nyou can cross him or go left or right.",
 	"imageName" : "room5.jpg",
 	"accessible" : true,
 	"northExit" : "room6",
@@ -55,8 +55,8 @@
 	"itemsNames" : [ ]
   },
   "room6" : {
-    "name" : "room6",
-    "description" : "Old doors,\nyou need golden key to open them",
+    "name" : "Golden doors",
+    "description" : "Old doors,\nyou need golden key to open them.",
     "imageName" : "room6.jpg",
     "accessible" : true,
     "northExit" : "room7",
@@ -67,7 +67,7 @@
   },
   "room7" : {
     "name" : "room7",
-    "description" : "Watch out for some item",
+    "description" : "Watch out for some item.",
     "imageName" : "room7.jpg",
     "accessible" : false,
     "northExit" : null,
@@ -78,7 +78,7 @@
   },
   "room8" : {
 	"name" : "room8",
-	"description" : "Hmmmmmmmm",
+	"description" : "There is a path.\nYou can go either north or south or east.",
 	"imageName" : "room8.jpg",
 	"accessible" : true,
 	"northExit" : "room12",
@@ -88,7 +88,7 @@
 	"itemsNames" : [ ]
   },
   "room9" : {
-	"name" : "room9",
+	"name" : "Bronze doors",
 	"description" : "Some weird doors.\nYou need bronze key to open them.",
 	"imageName" : "room9.jpg",
 	"accessible" : true,
@@ -100,7 +100,7 @@
   },
   "room10" : {
 	"name" : "room10",
-	"description" : "This place looks dark",
+	"description" : "This place looks dark.\nThere is a ruin down there.",
 	"imageName" : "room10.jpg",
 	"accessible" : false,
 	"northExit" : "room11",
@@ -111,7 +111,7 @@
   },
   "room11" : {
 	"name" : "room11",
-	"description" : "Oh my god, there is dragon\nTry to kill him",
+	"description" : "Oh my god, there is dragon.\nTry to kill him.",
 	"imageName" : "room11.jpg",
 	"accessible" : true,
 	"northExit" : null,
@@ -122,7 +122,7 @@
   },
   "room12" : {
 	"name" : "room12",
-	"description" : "dsada",
+	"description" : "It looks like a quiet place here.\nWatch out, there may be an item.",
 	"imageName" : "room12.jpg",
 	"accessible" : true,
 	"northExit" : "room13",
@@ -133,7 +133,7 @@
   },
   "room13" : {
 	"name" : "room13",
-	"description" : "dsada",
+	"description" : "You can see the crossroads from here.",
 	"imageName" : "room13.jpg",
 	"accessible" : true,
 	"northExit" : "room1",

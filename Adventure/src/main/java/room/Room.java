@@ -140,7 +140,6 @@ public class Room implements java.io.Serializable{
 	public void removeItem(Item item) {
 		items.remove(item);
 		showRoom();
-		System.out.println("Item "+item.getName()+" was removed from room");
 	}
 	
 	

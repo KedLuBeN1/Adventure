@@ -17,7 +17,6 @@ public class RoomManager {
 	private HashMap<String, Room> rooms = new HashMap<String, Room>();
 
 	private RoomManager() {
-		System.out.println("RoomManager:constructor()");
 	}
 
 	public static synchronized RoomManager getInstance() {

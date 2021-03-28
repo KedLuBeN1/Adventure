@@ -13,9 +13,9 @@ public class Dragon extends Item implements java.io.Serializable{
 	private int currentHP;
 	private int damage;
 	
-	public Dragon() {
-		
+	public Dragon() {	
 	}
+	
 	public Dragon(String name, String imageName,int currentHP, int maxHP, int damage, int x, int y, int width, int height, boolean collectable) {
 		super(name, imageName, x, y, width, height, collectable);
 		this.currentHP = currentHP;
@@ -62,7 +62,6 @@ public class Dragon extends Item implements java.io.Serializable{
 		World.getInstance().getController().displayText("Player took -"+damageToPlayer+" HP\nDragon took -"+damageToDragon+" HP");
 		
 		if (World.getInstance().getPlayer().getCurrentHP() <= 0) {
-			System.out.println("You are dead");
 			try {
 				World.getInstance().getController().getMainBorderPane().
 				setCenter(FXMLLoader.load(getClass().getResource("/game/lostView.fxml")));
@@ -76,7 +75,6 @@ public class Dragon extends Item implements java.io.Serializable{
 			World.getInstance().getController().getMenuItemSave().setVisible(false);
 		}
 		else if(currentHP<=0) {
-			System.out.println("You have defeated dragon");
 			try {
 				World.getInstance().getController().getMainBorderPane().
 				setCenter(FXMLLoader.load(getClass().getResource("/game/winView.fxml")));

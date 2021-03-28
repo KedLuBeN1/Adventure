@@ -32,7 +32,6 @@ public class World {
 	}
 
 	private World(){
-		System.out.println("World:constructor()");
 	}
     
     public static synchronized World getInstance(){

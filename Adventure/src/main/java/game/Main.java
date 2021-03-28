@@ -12,7 +12,6 @@ public class Main extends Application {
 	FXMLLoader fxmlLoader;
 	
 	public Main() {
-		System.out.println("Main:constructor()");
 	}
 
 	public static void main(String[] args) {

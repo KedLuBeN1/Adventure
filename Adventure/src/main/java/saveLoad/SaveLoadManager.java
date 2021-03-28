@@ -10,7 +10,6 @@ public class SaveLoadManager {
 	private static SaveLoadManager instance;
 	
 	private SaveLoadManager() {
-		System.out.println("SaveLoadManager:constructor()");
 	}
 
 	public static synchronized SaveLoadManager getInstance() {

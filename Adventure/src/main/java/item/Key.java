@@ -27,7 +27,7 @@ public class Key extends Item implements java.io.Serializable{
 			RoomManager.getInstance().getRoom(room).setAccessible(true);
 			RoomManager.getInstance().getCurrentRoom().setImageName(openedDoorImage);
 			RoomManager.getInstance().getCurrentRoom().showRoom();
-			World.getInstance().getController().displayText(room+" unlocked");
+			World.getInstance().getController().displayText(doors+" unlocked.");
 			return true;
 		}
 		else {
