@@ -27,10 +27,8 @@ public class World {
 	}
 
 	public void setPlayer(Player player) {
-		this.player = player;
-		controller.setCurrent_HP(player.getCurrent_HP());
-		controller.setMax_HP(player.getMax_HP());
-		controller.setDamage(player.getDamage());
+		this.player = player;	
+		World.getInstance().getController().updatePlayerStats(player.getCurrentHP(), player.getMaxHP(), player.getDamage());
 	}
 
 	private World(){
@@ -46,17 +44,16 @@ public class World {
 
 	public void initPlayer() {
 		ObjectMapper objectMapper = new ObjectMapper();	
-		try {
-			
-			//player = objectMapper.readValue(new File("player.json"),Player.class);
-			objectMapper.writeValue(new File("player.json"),player);
+		try {		
+			player = objectMapper.readValue(new File("player.json"),Player.class);
 			} catch (JsonGenerationException e) {
 				e.printStackTrace();
 			} catch (JsonMappingException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}		
+			}	
+		World.getInstance().getController().updatePlayerStats(player.getCurrentHP(), player.getMaxHP(), player.getDamage());
 	}
 
 	

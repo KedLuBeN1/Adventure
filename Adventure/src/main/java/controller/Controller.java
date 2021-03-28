@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import game.Command;
 import game.ImageManager;
-import game.Player;
 import game.World;
 import item.Item;
 import item.ItemManager;
@@ -36,7 +35,7 @@ public class Controller {
 	private Stage startingWindow;
 	private Stage newGameWindow;
 	private int GUI = 1;
-	
+
 	@FXML
 	private Canvas canvas;
 
@@ -75,9 +74,9 @@ public class Controller {
 
 	@FXML
 	private TextArea output;
-	
-    @FXML
-    private Text damage;
+
+	@FXML
+	private Text damage;
 
 	@FXML
 	private Text max_HP;
@@ -85,18 +84,18 @@ public class Controller {
 	@FXML
 	private Text current_HP;
 
-    @FXML
-    private VBox dragonStats;
+	@FXML
+	private VBox dragonStats;
 
-    @FXML
-    private Text dragonHP;
+	@FXML
+	private Text dragonHP;
 
-    @FXML
-    private Text dragonMaxHP;
+	@FXML
+	private Text dragonMaxHP;
 
-    @FXML
-    private Text dragonDamage;
-    
+	@FXML
+	private Text dragonDamage;
+
 	@FXML
 	private Button westButton;
 
@@ -194,7 +193,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	void loadGameAction(ActionEvent event) {
 		menuItemSave.setVisible(false);
@@ -209,10 +208,10 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void loadGame() {
 		try {
-			//menuItemNew.setVisible(false);
+			// menuItemNew.setVisible(false);
 			menuItemSave.setVisible(true);
 			guiMenu.setDisable(false);
 			showGui();
@@ -226,9 +225,8 @@ public class Controller {
 			System.out.println("Game has been loaded");
 			displayText("Game has been loaded");
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			System.out.println("yasay");
+			// e.printStackTrace();
+			loadGameAction(null);
 		}
 	}
 
@@ -288,7 +286,6 @@ public class Controller {
 	}
 
 	private void initPlayer() {
-		World.getInstance().setPlayer(new Player(150,100,20));
 		World.getInstance().initPlayer();
 	}
 
@@ -312,7 +309,6 @@ public class Controller {
 	}
 
 	private void initCommands() {
-		commands.put("damage", new Command("damage", "Deal damage to a player"));
 		commands.put("go north", new Command("go north", "The player will go north if possible"));
 		commands.put("go south", new Command("go south", "The player will go south if possible"));
 		commands.put("go west", new Command("go west", "The player will go west if possible"));
@@ -381,13 +377,10 @@ public class Controller {
 		if (ImageManager.getInstance().getImage(imageName) == null) {
 			System.out.println("Tenhle obrazek jeste neznam, vytvorim ho");
 			ImageManager.getInstance().addImage(imageName);
-			Image image = ImageManager.getInstance().getImage(imageName);
-			canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
-		} else {
-			System.out.println("Tenhle obrazek uz znam");
-			Image image = ImageManager.getInstance().getImage(imageName);
-			canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
 		}
+		Image image = ImageManager.getInstance().getImage(imageName);
+		canvas.getGraphicsContext2D().drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
+
 		showArrows();
 	}
 
@@ -418,7 +411,16 @@ public class Controller {
 			westButton.setVisible(false);
 		}
 	}
-	
+
+	public void showItem(String imageName, int x, int y, int w, int h) {
+		if (ImageManager.getInstance().getImage(imageName) == null) {
+			System.out.println("Tenhle obrazek itemu jeste neznam, vytvorim ho");
+			ImageManager.getInstance().addImage(imageName);
+		}
+		Image image = ImageManager.getInstance().getImage(imageName);
+		canvas.getGraphicsContext2D().drawImage(image, x, y, w, h);
+	}
+
 	public void setCurrent_HP(int current_HP) {
 		this.current_HP.setText(Integer.toString(current_HP));
 	}
@@ -426,11 +428,11 @@ public class Controller {
 	public void setMax_HP(int max_HP) {
 		this.max_HP.setText(Integer.toString(max_HP));
 	}
-	
+
 	public void setDamage(int damage) {
 		this.damage.setText(Integer.toString(damage));
 	}
-	
+
 	public VBox getDragonStats() {
 		return dragonStats;
 	}
@@ -441,6 +443,12 @@ public class Controller {
 		dragonMaxHP.setText(Integer.toString(maxHp));
 	}
 	
+	public void updatePlayerStats(int currentHP, int maxHP, int damage) {
+		setCurrent_HP(currentHP);
+		setMax_HP(maxHP);
+		setDamage(damage);
+	}
+
 	public void addItem(Item item) {
 		System.out.println("Nacitam item");
 		System.out.println(item.getName() + " sirka: " + inventory.getWidth());
@@ -470,19 +478,6 @@ public class Controller {
 		output.appendText("All available commands\n");
 		for (Command command : commands.values()) {
 			output.appendText(command.getInfo());
-		}
-	}
-
-	public void showItem(String imageName, int x, int y, int w, int h) {
-		if (ImageManager.getInstance().getImage(imageName) == null) {
-			System.out.println("Tenhle obrazek itemu jeste neznam, vytvorim ho");
-			ImageManager.getInstance().addImage(imageName);
-			Image image = ImageManager.getInstance().getImage(imageName);
-			canvas.getGraphicsContext2D().drawImage(image, x, y, w, h);
-		} else {
-			System.out.println("Tenhle obrazek itemu uz znam");
-			Image image = ImageManager.getInstance().getImage(imageName);
-			canvas.getGraphicsContext2D().drawImage(image, x, y, w, h);
 		}
 	}
 

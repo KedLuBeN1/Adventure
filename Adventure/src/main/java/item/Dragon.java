@@ -61,7 +61,7 @@ public class Dragon extends Item implements java.io.Serializable{
 		
 		World.getInstance().getController().displayText("Player took -"+damageToPlayer+" HP\nDragon took -"+damageToDragon+" HP");
 		
-		if (World.getInstance().getPlayer().getCurrent_HP() <= 0) {
+		if (World.getInstance().getPlayer().getCurrentHP() <= 0) {
 			System.out.println("You are dead");
 			try {
 				World.getInstance().getController().getMainBorderPane().

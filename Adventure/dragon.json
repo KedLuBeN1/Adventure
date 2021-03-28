@@ -1,14 +1,14 @@
 {
   "dragon" : {
     "name" : "dragon",
-    "imageName" : "dragon.gif",
+    "imageName" : "dragon.png",
     "currentHP" : 120,
     "maxHP" : 120,
     "damage" : 30,
     "collectable" : false,
     "x" : 150,
     "y" : 200,
-    "width" : 150,
-    "height" : 120
+    "width" : 200,
+    "height" : 180
   }
 }

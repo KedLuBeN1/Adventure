@@ -26,9 +26,9 @@ public class HealingItem extends Item implements java.io.Serializable{
 
 	@Override
 	public boolean itemAction() {
-		int hp1 = World.getInstance().getPlayer().getCurrent_HP();
+		int hp1 = World.getInstance().getPlayer().getCurrentHP();
 		World.getInstance().getPlayer().addHP(heal);
-		int hp2 = World.getInstance().getPlayer().getCurrent_HP();
+		int hp2 = World.getInstance().getPlayer().getCurrentHP();
 		World.getInstance().getController().displayText(name+" healed you for " + (hp2-hp1) + " HP");
 		return true;
 	}

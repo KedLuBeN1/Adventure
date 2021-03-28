@@ -62,8 +62,6 @@ public class ItemManager {
 					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, Key.class)));
 			items.putAll(objectMapper.readValue(new File("healingItems.json"),
 					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, HealingItem.class)));
-			items.putAll(objectMapper.readValue(new File("openableItems.json"),
-					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, OpenableItem.class)));
 			items.putAll(objectMapper.readValue(new File("damageItems.json"),
 					objectMapper.getTypeFactory().constructMapLikeType(HashMap.class, String.class, DamageItem.class)));
 			items.putAll(objectMapper.readValue(new File("dragon.json"),

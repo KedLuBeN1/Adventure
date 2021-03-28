@@ -1,27 +1,27 @@
 {
-  "key to void" : {
-    "name" : "key to void",
-    "imageName" : "keyToVoid.jpg",
+  "key to room10" : {
+    "name" : "bronze key",
+    "imageName" : "keyToRoom10.jpg",
     "collectable" : true,
-    "x" : 300,
-    "y" : 500,
+    "x" : 350,
+    "y" : 400,
     "width" : 80,
     "height" : 45,
-    "room" : "void",
-    "doors" : "doors to void",
-    "openedDoorImage" : "doorsToVoidOpened.jpg"
+    "room" : "room10",
+    "doors" : "room9",
+    "openedDoorImage" : "room9Opened.jpg"
   },
-  "key to arena" : {
-    "name" : "key to arena",
-    "imageName" : "keyToArena.png",
+  "key to room7" : {
+    "name" : "golden key",
+    "imageName" : "keyToRoom7.png",
     "collectable" : true,
-    "x" : 500,
-    "y" : 50,
-    "width" : 80,
-    "height" : 45,
-    "room" : "arena",
-    "doors" : "doors to arena",
-    "openedDoorImage" : "doorsToArenaOpened.jpeg"
+    "x" : 120,
+    "y" : 460,
+    "width" : 55,
+    "height" : 29,
+    "room" : "room7",
+    "doors" : "room6",
+    "openedDoorImage" : "room6Opened.jpg"
   }  
 }
 

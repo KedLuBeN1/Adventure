@@ -39,15 +39,15 @@ public class Player implements java.io.Serializable{
 		World.getInstance().getController().setCurrent_HP(currentHP);
 	}
 	
-	public void setCurrent_HP(int current_HP) {
+	public void setCurrentHP(int current_HP) {
 		this.currentHP = current_HP;
 	}
 	
-	public int getCurrent_HP() {
+	public int getCurrentHP() {
 		return currentHP;
 	}
 
-	public int getMax_HP() {
+	public int getMaxHP() {
 		return maxHP;
 	}
 

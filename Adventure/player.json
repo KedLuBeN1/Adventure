@@ -1,1 +1,6 @@
-{"damage":20,"name":null,"inventory":[],"current_HP":100,"max_HP":150}
+{
+"damage":20,
+"name":null,
+"currentHP":100,
+"maxHP":130
+}

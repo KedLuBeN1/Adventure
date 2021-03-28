@@ -1,101 +1,145 @@
 {
-  "forest" : {
-    "name" : "forest",
-    "description" : "Beautifull forest",
-    "imageName" : "forest.jpg",
+  "room1" : {
+    "name" : "room1",
+    "description" : "There is a crossroads here\nYou can go either west or east or south",
+    "imageName" : "room1.jpg",
     "accessible" : true,
-    "northExit" : "well",
-    "southExit" : "cratch",
-    "westExit" : "doors to void",
-    "eastExit" : "cave",
+    "northExit" : null,
+    "southExit" : "room13",
+    "westExit" : "room3",
+    "eastExit" : "room2",
     "itemsNames" : [ ]
   },
-  "cratch" : {
-    "name" : "cratch",
-    "description" : "Big cratch",
-    "imageName" : "cratch.jpg",
-    "accessible" : true,
-    "northExit" : "forest",
-    "southExit" : "bridge",
-    "westExit" : null,
-    "eastExit" : null,
-    "itemsNames" : [ "apple" ]
-  },
-  "cave" : {
-    "name" : "cave",
-    "description" : "Beautifull cave",
-    "imageName" : "cave.jpeg",
+  "room2" : {
+    "name" : "room2",
+    "description" : "There is some path\nWatch out some item may be here",
+    "imageName" : "room2.jpg",
     "accessible" : true,
     "northExit" : null,
-    "southExit" : null,
-    "westExit" : "forest",
-    "eastExit" : null,
-    "itemsNames" : [ "key to void" ]
-  },
-  "doors to void" : {
-    "name" : "doors to void",
-    "description" : "Some weird doors",
-    "imageName" : "doorsToVoid.jpg",
-    "accessible" : true,
-    "northExit" : null,
-    "southExit" : null,
-    "westExit" : "void",
-    "eastExit" : "forest",
-    "itemsNames" : [ ]
-  },
-  "void" : {
-    "name" : "void",
-    "description" : "Just void",
-    "imageName" : "void.jpg",
-    "accessible" : false,
-    "northExit" : null,
-    "southExit" : null,
-    "westExit" : null,
-    "eastExit" : "doors to void",
-    "itemsNames" : [ "chest","key to arena" ]
-  },
-  "well" : {
-    "name" : "well",
-    "description" : "Very deep well",
-    "imageName" : "well.jpg",
-    "accessible" : true,
-    "northExit" : null,
-    "southExit" : "forest",
+    "southExit" : "room1",
     "westExit" : null,
     "eastExit" : null,
     "itemsNames" : [ "sword" ]
   },
-   "bridge" : {
-    "name" : "bridge",
-    "description" : "Dark bridge",
-    "imageName" : "bridge.png",
+  "room3" : {
+	"name" : "room3",
+	"description" : "Hmmmmmmmm",
+	"imageName" : "room3.jpg",
+	"accessible" : true,
+	"northExit" : "room4",
+	"southExit" : "room1",
+	"westExit" : null,
+	"eastExit" : null,
+	"itemsNames" : [ ]
+  },
+  "room4" : {
+	"name" : "room4",
+	"description" : "Hmmmmmmmm",
+	"imageName" : "room4.jpg",
+	"accessible" : true,
+	"northExit" : "room5",
+	"southExit" : "room3",
+	"westExit" : null,
+	"eastExit" : null,
+	"itemsNames" : [ "key to room7" ]
+  },
+  "room5" : {
+	"name" : "room5",
+	"description" : "Hmmmmmmmm",
+	"imageName" : "room5.jpg",
+	"accessible" : true,
+	"northExit" : "room6",
+	"southExit" : null,
+	"westExit" : "room4",
+	"eastExit" : "room8",
+	"itemsNames" : [ ]
+  },
+  "room6" : {
+    "name" : "room6",
+    "description" : "Old doors,\nyou need golden key to open them",
+    "imageName" : "room6.jpg",
     "accessible" : true,
-    "northExit" : "cratch",
-    "southExit" : "doors to arena",
+    "northExit" : "room7",
+    "southExit" : "room5",
     "westExit" : null,
     "eastExit" : null,
     "itemsNames" : [ ]
   },
-   "arena" : {
-    "name" : "arena",
-    "description" : "Combat arena",
-    "imageName" : "arena.jpg",
+  "room7" : {
+    "name" : "room7",
+    "description" : "Watch out for some item",
+    "imageName" : "room7.jpg",
     "accessible" : false,
     "northExit" : null,
-    "southExit" : null,
-    "westExit" : "doors to arena",
-    "eastExit" : null,
-    "itemsNames" : [ "dragon" ]
-  },
-   "doors to arena" : {
-    "name" : "doors to arena",
-    "description" : "Doors to arena",
-    "imageName" : "doorsToArena.jpeg",
-    "accessible" : true,
-    "northExit" : "bridge",
-    "southExit" : null,
+    "southExit" : "room6",
     "westExit" : null,
-    "eastExit" : "arena",
-    "itemsNames" : [ ]
-  } 
+    "eastExit" : null,
+    "itemsNames" : [ "key to room10" ]
+  },
+  "room8" : {
+	"name" : "room8",
+	"description" : "Hmmmmmmmm",
+	"imageName" : "room8.jpg",
+	"accessible" : true,
+	"northExit" : "room12",
+	"southExit" : "room5",
+	"westExit" : null,
+	"eastExit" : "room9",
+	"itemsNames" : [ ]
+  },
+  "room9" : {
+	"name" : "room9",
+	"description" : "Some weird doors.\nYou need bronze key to open them.",
+	"imageName" : "room9.jpg",
+	"accessible" : true,
+	"northExit" : "room10",
+	"southExit" : "room8",
+	"westExit" : null,
+	"eastExit" : null,
+	"itemsNames" : [ ]
+  },
+  "room10" : {
+	"name" : "room10",
+	"description" : "This place looks dark",
+	"imageName" : "room10.jpg",
+	"accessible" : false,
+	"northExit" : "room11",
+	"southExit" : "room9",
+	"westExit" : null,
+	"eastExit" : null,
+	"itemsNames" : [ ]
+  },
+  "room11" : {
+	"name" : "room11",
+	"description" : "Oh my god, there is dragon\nTry to kill him",
+	"imageName" : "room11.jpg",
+	"accessible" : true,
+	"northExit" : null,
+	"southExit" : "room10",
+	"westExit" : null,
+	"eastExit" : null,
+	"itemsNames" : [ "dragon" ]
+  },
+  "room12" : {
+	"name" : "room12",
+	"description" : "dsada",
+	"imageName" : "room12.jpg",
+	"accessible" : true,
+	"northExit" : "room13",
+	"southExit" : null,
+	"westExit" : "room8",
+	"eastExit" : null,
+	"itemsNames" : [ "apple" ]
+  },
+  "room13" : {
+	"name" : "room13",
+	"description" : "dsada",
+	"imageName" : "room13.jpg",
+	"accessible" : true,
+	"northExit" : "room1",
+	"southExit" : "room12",
+	"westExit" : null,
+	"eastExit" : null,
+	"itemsNames" : [ ]
+  }
 }
